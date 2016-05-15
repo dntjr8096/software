@@ -76,19 +76,6 @@ public class makeBookList extends JFrame {
 	p3.add(centerPanel, BorderLayout.CENTER);
  }
 
-  /** Main method */
-  public static void main(String[] args) {
-	
-	makeBookList frame = new makeBookList();
-    frame.setTitle("MakeCourseSchedule");
-    frame.setSize(1000, 600);
-    frame.setLocationRelativeTo(null);
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    
-    frame.setVisible(true);
-	
-  }
-  
   class InsertListenerClass implements ActionListener {
 	  public void actionPerformed(ActionEvent e) {
 	
