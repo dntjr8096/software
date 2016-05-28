@@ -1,0 +1,77 @@
+//////////SQL DB생성 스크립트////////////
+
+
+*mysql 접속
+mysql -u root -p
+
+*DB 알파북 생성
+create database alphabook;
+
+*DB 생성확인
+use mysql;
+show databases;
+
+*DB접속
+use alphabook;
+
+*테이블생성
+create table user(
+ID varchar(30) not null,
+PW varchar(30) not null,
+primary key(ID));
+
+commit;
+
+create table book(
+ISBN varchar(15) not null,
+b_name varchar(30),
+author varchar(20),
+primary key(ISBN));
+
+commit;
+
+create table readingList(
+ID varchar(30) not null,
+ISBN varchar(15) not null,
+reading_date varchar(10),
+pages int(4),
+primary key(ISBN,ID),
+foreign key(ISBN) references book(ISBN),
+foreign key(ID) references user(ID));
+
+commit;
+
+*기본적 값입력
+insert into user values('12','1'); 
+
+insert into book values('9788937834790','정의란무엇인가','마이클 샌델');
+
+insert into readingList values('12','9788937834790','20160520',125);
+
+commit;
+
+*기본적인 데이터확인
+select * from user;
+
+select * from book;
+
+select * from readingList;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
