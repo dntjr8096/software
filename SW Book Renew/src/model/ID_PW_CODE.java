@@ -1,3 +1,4 @@
+package model;
 
 public interface ID_PW_CODE {
 //	 	Administrator	User

@@ -1,3 +1,4 @@
+package model;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Iterator;

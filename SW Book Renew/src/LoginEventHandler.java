@@ -4,6 +4,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import model.ID_PW_CODE;
+
 public class LoginEventHandler implements ActionListener {
 	private JTextField IDField, PWField;
 	private LoginFrame login = null;

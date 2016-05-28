@@ -1,3 +1,5 @@
+package model;
+
 class Book{
 	public String Title = "";
 	public String Link = "";
