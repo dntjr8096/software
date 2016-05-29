@@ -1,12 +1,14 @@
 package model;
+import java.util.ArrayList;
 
 public class XMLReader {
 
 	static private int class_num = 0;
 	static private XMLReader rxml;
-	private String searchWord, queryType;
+	private XmlSaxParserHandler xsph;	
 	
 	private XMLReader(){
+		xsph = new XmlSaxParserHandler();
 	}
 	
 	public static XMLReader newInstance(){
@@ -20,13 +22,14 @@ public class XMLReader {
 		}
 	}
 	
-	public void setSearchWord(String searchWord){
-		this.searchWord = searchWord;
+	
+	public ArrayList<Book> getParseResult(String searchWord, String queryType){	//parsing된 결과 받기
+		try {
+			xsph.parseXml(URL.GetUrl(searchWord, queryType));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return (ArrayList)xsph.Books;
 	}
-	
-	public void setQueryType(String queryType){
-		this.queryType = queryType;
-	}
-	
-	
 }

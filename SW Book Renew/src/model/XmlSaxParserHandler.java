@@ -16,11 +16,11 @@ class XmlSaxParserHandler extends DefaultHandler {
 	private boolean inItemElement = false;
 	private String tempValue;
 
-	public XmlSaxParserHandler( ){
+	public XmlSaxParserHandler( ){			//생성자
 		Books = new ArrayList<Book>();
 	}
 
-	public void startElement(String namespace, String localName, String qName, Attributes atts) {
+	public void startElement(String namespace, String localName, String qName, Attributes atts) {	//시작 element만날시 실행
 		if (localName.equals("item")) {
 			currentBook = new Book();
 			inItemElement = true;
@@ -41,7 +41,7 @@ class XmlSaxParserHandler extends DefaultHandler {
 		tempValue = tempValue + new String(ch,start,length);
 	}
 
-	public void endElement(String namespaceURI, String localName,String qName) {
+	public void endElement(String namespaceURI, String localName,String qName) {	// 마지막 element만났을때 실행
 		if(inItemElement){
 			if (localName.equals("item")) {
 				Books.add(currentBook);
@@ -61,7 +61,7 @@ class XmlSaxParserHandler extends DefaultHandler {
 		}
 	}
 
-	public void parseXml(String xmlUrl) throws Exception {
+	public void parseXml(String xmlUrl) throws Exception {		//xml parsing
             SAXParserFactory spf = SAXParserFactory.newInstance();
             SAXParser sp = spf.newSAXParser();
             ParserAdapter pa = new ParserAdapter(sp.getParser());
