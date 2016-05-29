@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-class User {
+public class User {
 	private String id;		//user id
 	private String pw;		//user pw
 	private ArrayList<Book> books;	//user가 읽은 책 목록
@@ -22,7 +22,6 @@ class User {
 	public void addBook(Book b){		//책 추가
 		books.add(b);
 	}
-	
 	
 	public String getID(){	//id getter
 		return id;
