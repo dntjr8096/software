@@ -6,10 +6,9 @@ import java.awt.GridLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import controller.ImageLabelListener; 
 
 import model.Book;
-
-import controller.ImageLabelListener;
 
 public class BookPanel extends JPanel{
 	
@@ -19,7 +18,7 @@ public class BookPanel extends JPanel{
 	private String link;				//책 상세주소
 	
 	public BookPanel(){
-		setSize(300,180);
+		setSize(300,180); 		
 		setLayout(new BorderLayout());
 		setBackground(Color.WHITE);
 		
@@ -27,14 +26,11 @@ public class BookPanel extends JPanel{
 		author = new JLabel();
 		bookContent = new JPanel();
 		cover = new ImageLabel();
-		add(cover, BorderLayout.CENTER);
-		bookContent.setLayout(new GridLayout(4,1,0,0));		//gridlayout 2*1생성
-		title.setHorizontalAlignment(JLabel.CENTER);
-		author.setHorizontalAlignment(JLabel.CENTER);
 		
-		bookContent.add(new JLabel("제 목", JLabel.CENTER));
+		add(cover, BorderLayout.CENTER);
+		
+		bookContent.setLayout(new GridLayout(2,1));		//gridlayout 2*1생성
 		bookContent.add(title);
-		bookContent.add(new JLabel("저 자", JLabel.CENTER));
 		bookContent.add(author);
 		title.setBackground(Color.WHITE);		//Label배경을 White로 설정
 		author.setBackground(Color.WHITE);		//Label배경을 White로 설정
@@ -43,13 +39,11 @@ public class BookPanel extends JPanel{
 		add(bookContent, BorderLayout.EAST);
 	}
 	
-	
-	public void setContent(Book b){ 	//내용 설정 및 리스너 달기
+	public void setContent(Book b){ 	//내용 설정
 		title.setText(b.Title);
 		author.setText(b.Author);
 		cover.mySetIcon(b.Cover);
 		link = b.Link;
-		cover.addMouseListener(new ImageLabelListener(link));
 	}
 	//getter
 	public JLabel getTitle(){
