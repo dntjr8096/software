@@ -18,12 +18,6 @@ public class Main {
 	      
 	      
 	      if (loginmanager.getMode() == 1) {
-	    	  makeBookList frame = new makeBookList();
-	    	    frame.setTitle("MakeCourseSchedule");
-	    	    frame.setSize(1000, 600);
-	    	    frame.setLocationRelativeTo(null);
-	    	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    	    frame.setVisible(true);
 	       }
 	       else if (loginmanager.getMode() == 2) {
 	          System.exit(0);

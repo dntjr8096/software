@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-class User {
+public class User {
 	private String id;		//user id
 	private String pw;		//user pw
 	private ArrayList<Book> books;	//user가 읽은 책 목록
