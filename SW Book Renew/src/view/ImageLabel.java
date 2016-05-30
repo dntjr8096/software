@@ -13,7 +13,7 @@ public class ImageLabel extends JLabel{
 	private ImageIcon icon;
 	
 	public ImageLabel(){
-		setSize(250, 240);
+		setSize(150, 180);
 		//addMouseListener(l);
 	}
 	
