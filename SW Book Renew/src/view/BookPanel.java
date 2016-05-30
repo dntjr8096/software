@@ -57,4 +57,8 @@ public class BookPanel extends JPanel{
 		return cover;
 	}
 	
+	public JPanel getbookContent(){
+		return bookContent;
+	}
+	
 }

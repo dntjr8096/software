@@ -15,7 +15,7 @@ public class BookFrameTest {
 		JFrame jf = new JFrame();
 		BookPanel bp = new BookPanel();
 		XMLReader xmlr = XMLReader.newInstance();
-		ArrayList<Book> books = xmlr.getParseResult("프로그래밍", "Title");
+		ArrayList<Book> books = xmlr.getParseResult("소프트웨어공학", "Title");
 		jf.add(bp);
 		bp.setContent(books.get(1));
 		jf.setVisible(true);

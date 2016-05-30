@@ -14,17 +14,21 @@ import java.util.Vector;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import Help;
-import Setting;
+import model.Book;
+import model.XMLReader;
 
 import java.io.*;
 
 public class makeFirstFrame extends JFrame {
 
-	private JPanel mainPanel;	//main panel
-	private JPanel topPanel;	//top panel
-	private JPanel menuPanel;	//menu Panel
-	private JButton setting, help;
+	private JPanel mainPanel;	// main panel
+	private JPanel topPanel;	// top panel
+	private JPanel menuPanel;	// menu Panel
+	private JPanel bottomPanel;	// bottom Panel
+	private JPanel recoBookPanel;	// 추천도서 패널
+	private BookPanel bp;
+	private JPanel chartPanel; // 차트패널
+	private JButton setting, help, bookManageBtn;
 	
 	public makeFirstFrame() {
 		
@@ -45,78 +49,76 @@ public class makeFirstFrame extends JFrame {
 		menuPanel.add(setting);
 		menuPanel.add(help);
 		
-
-	    Btn1ListenerClass listener2 = new Btn1ListenerClass();		Btn1.addActionListener(listener2);
-	    Btn2ListenerClass listener3 = new Btn2ListenerClass();		setting.addActionListener(listener3);
-	    Btn3ListenerClass listener4 = new Btn3ListenerClass();		help.addActionListener(listener4);
-
-		
 		topPanel.add(menuPanel,BorderLayout.NORTH);
 		
-		JTextArea helloWord = new JTextArea("hello");
+		JLabel helloWord = new JLabel("One man who has a mind and knows it can always beat ten men who haven't and don't.");
 		
 		topPanel.add(helloWord,BorderLayout.CENTER);
-		
 		mainPanel.add(topPanel,BorderLayout.NORTH);
 		
-		JPanel p4 = new JPanel(new GridLayout(1,3)); // bottom Panel
+		bottomPanel = new JPanel(new GridLayout(1,3));
+		mainPanel.add(bottomPanel,BorderLayout.CENTER);
+		chartPanel = new JPanel(); // bottom 차트 패널 ( 임시로 만들어 놓음 )
 		
-		mainPanel.add(p4,BorderLayout.CENTER);
+		recoBookPanel = new JPanel(new BorderLayout());
 		
-		JPanel p5 = new JPanel(); // bottom 첫버째 패널 ( 임시로 만들어 놓음 )
+		recoBookPanel.add(new JLabel("추천도서"), BorderLayout.NORTH);
 		
-		JPanel p6 = new JPanel(); // bottom 차트 패널 ( 임시로 만들어 놓음 )
+		bp = new BookPanel();
 		
-		p4.add(p5);
+		bp.setLayout(new GridLayout(2,1));
 		
-		JButton bookManageBtn = new JButton("내책관리");
+		XMLReader xmlr = XMLReader.newInstance();
+		ArrayList<Book> books = xmlr.getParseResult("소프트웨어공학", "Title");
+		bp.setContent(books.get(1));
 		
-		p4.add(bookManageBtn);
+		recoBookPanel.add(bp);
 		
-		p4.add(p6);
+		bottomPanel.add(recoBookPanel);
 		
-		bookManageListenerClass listenerA = new bookManageListenerClass();		bookManageBtn.addActionListener(listenerA);
+		bookManageBtn = new JButton("내책관리");
+		
+		bottomPanel.add(bookManageBtn);
+		
+		bottomPanel.add(chartPanel);
+		
 
  }
 
-	  class bookManageListenerClass implements ActionListener {
-
-		  public void actionPerformed(ActionEvent e) {
-			  JFrame frame2 = new JFrame();
-			    frame2.setTitle("Course List");
-			    frame2.setSize(800, 300);
-			    frame2.setLocationRelativeTo(null);
-			    frame2.setVisible(true);
-		  }
-		  
-		  
+	 JPanel getmainPanel(){
+		return mainPanel;
+	}
+	 
+	 JPanel gettopPanel(){
+			return topPanel;
 		}
-  
-	  class Btn1ListenerClass implements ActionListener {
-		  public void actionPerformed(ActionEvent e) {
-			 
-		  }
+	 
+	 JPanel getmenuPanel(){
+			return menuPanel;
 		}
-	  
-	  class Btn2ListenerClass implements ActionListener {
-		  public void actionPerformed(ActionEvent e) {
-			  Setting frameA = new Setting();
-			    frameA.setTitle("Setting");
-			    frameA.setSize(400, 600);
-			    frameA.setLocationRelativeTo(null);
-			    frameA.setVisible(true);
-		  }
+	 
+	 JPanel getbottomPanel(){
+			return bottomPanel;
 		}
-	  
-	  class Btn3ListenerClass implements ActionListener {
-		  public void actionPerformed(ActionEvent e) {
-			  Help frameB = new Help();
-			    frameB.setTitle("Help");
-			    frameB.setSize(400,600);
-			    frameB.setLocationRelativeTo(null);
-			    frameB.setVisible(true);
-		  }
+	 
+	 JPanel getrecoBookPanel(){
+			return recoBookPanel;
 		}
+	 JPanel getchartPanel(){
+		 return chartPanel;
+	 }
+	 
+	 JButton getsetting(){
+		 return setting;
+	 }
+	 
+	 JButton gethelp(){
+		 return help;
+	 }
+	 
+	 JButton getbookManageBtn(){
+		 return bookManageBtn;
+	 }
 	  
 }
 

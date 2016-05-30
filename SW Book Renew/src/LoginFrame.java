@@ -10,10 +10,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import model.database;
+
 public class LoginFrame extends JFrame {
    private JTextField IDField, PWField;
    private JButton OKBtn;
    public int mode;
+
+	private database db = new database();
    
    public LoginFrame() {
       this("Master");
@@ -28,12 +32,15 @@ public class LoginFrame extends JFrame {
       PWField = new JTextField(10);
       OKBtn = new JButton("OK");
       
+      
       setLoginFrame();
-      OKBtn.addActionListener(new LoginEventHandler(IDField, PWField, this));
+      OKBtn.addActionListener(new LoginEventHandler(IDField, PWField, this, db));
       
       IDField.addKeyListener(new KeyboardListener(IDField, PWField, this));
       PWField.addKeyListener(new KeyboardListener(IDField, PWField, this));
       this.setVisible(true);
+      
+      db.addUser(new String("t1"), new String("t1"));
    }
    public void setLoginFrame() {   
       this.setLayout(new FlowLayout());
