@@ -24,42 +24,44 @@ public class makeFirstFrame extends JFrame {
 	private JPanel mainPanel;	//main panel
 	private JPanel topPanel;	//top panel
 	private JPanel menuPanel;	//menu Panel
+	private JButton setting, help;
+	
 	public makeFirstFrame() {
 		
 		setLayout(new BorderLayout());
 		
-		JPanel p1 = new JPanel(new BorderLayout()); // main Panel
-		this.add(p1);
+		mainPanel = new JPanel(new BorderLayout()); // main Panel
+		this.add(mainPanel);
 		
-		JPanel p2 = new JPanel(new BorderLayout()); // top Panel
+		topPanel = new JPanel(new BorderLayout()); // top Panel
 		
-		JPanel p3 = new JPanel(new GridLayout(1,3)); // menu Panel
+		menuPanel = new JPanel(new GridLayout(1,3)); // menu Panel
 		
 		JButton Btn1 = new JButton("버튼1");
-		JButton Btn2 = new JButton("설정");
-		JButton Btn3 = new JButton("도움말");
+		setting = new JButton("설정");
+		help = new JButton("도움말");
 		
-		p3.add(Btn1);
-		p3.add(Btn2);
-		p3.add(Btn3);
+		menuPanel.add(Btn1);
+		menuPanel.add(setting);
+		menuPanel.add(help);
 		
 
 	    Btn1ListenerClass listener2 = new Btn1ListenerClass();		Btn1.addActionListener(listener2);
-	    Btn2ListenerClass listener3 = new Btn2ListenerClass();		Btn2.addActionListener(listener3);
-	    Btn3ListenerClass listener4 = new Btn3ListenerClass();		Btn3.addActionListener(listener4);
+	    Btn2ListenerClass listener3 = new Btn2ListenerClass();		setting.addActionListener(listener3);
+	    Btn3ListenerClass listener4 = new Btn3ListenerClass();		help.addActionListener(listener4);
 
 		
-		p2.add(p3,BorderLayout.NORTH);
+		topPanel.add(menuPanel,BorderLayout.NORTH);
 		
 		JTextArea helloWord = new JTextArea("hello");
 		
-		p2.add(helloWord,BorderLayout.CENTER);
+		topPanel.add(helloWord,BorderLayout.CENTER);
 		
-		p1.add(p2,BorderLayout.NORTH);
+		mainPanel.add(topPanel,BorderLayout.NORTH);
 		
 		JPanel p4 = new JPanel(new GridLayout(1,3)); // bottom Panel
 		
-		p1.add(p4,BorderLayout.CENTER);
+		mainPanel.add(p4,BorderLayout.CENTER);
 		
 		JPanel p5 = new JPanel(); // bottom 첫버째 패널 ( 임시로 만들어 놓음 )
 		
