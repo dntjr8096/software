@@ -1,8 +1,11 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import view.makeFirstFrame;
 
 public class KeyboardListener implements KeyListener {
 	private JTextField IDField;
@@ -27,6 +30,15 @@ public class KeyboardListener implements KeyListener {
 				login.turnOff();
 
 				JOptionPane.showMessageDialog(null, "안녕하세요 Master");
+				
+
+				makeFirstFrame frame = new makeFirstFrame();
+		    	    frame.setTitle("MakeCourseSchedule");
+		    	    frame.setSize(1000, 600);
+		    	    frame.setLocationRelativeTo(null);
+		    	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		    	    frame.setVisible(true);
+		    	    
 			} else {
 				login.setMode(2);
 				JOptionPane.showMessageDialog(null, "ID나 비밀번호를 잘못 입력하였습니다.");
