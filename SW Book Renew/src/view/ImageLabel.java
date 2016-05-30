@@ -13,7 +13,7 @@ public class ImageLabel extends JLabel{
 	private ImageIcon icon;
 	
 	public ImageLabel(){
-		setSize(150, 180);
+		setSize(250, 240);
 		//addMouseListener(l);
 	}
 	
@@ -22,7 +22,7 @@ public class ImageLabel extends JLabel{
 			//resize 작업, 그림을 Label 크기에 맞게 설정
 			ImageIcon temp = new ImageIcon(new URL(url));	//temp를 resize할것임
 			Image tempi = temp.getImage();		//ImageIcon을 Image로 변환
-			Image transi = tempi.getScaledInstance(150, 180, Image.SCALE_SMOOTH);
+			Image transi = tempi.getScaledInstance(250, 240, Image.SCALE_SMOOTH);
 			icon = new ImageIcon(transi);		//Image로 ImageIcon 생성
 			setIcon(icon);
 		} catch (MalformedURLException e) {
