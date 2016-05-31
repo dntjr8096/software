@@ -39,7 +39,7 @@ public class LoginEventHandler implements ActionListener {
 
 			makeFirstFrame frame = new makeFirstFrame();
 	    	    frame.setTitle("MakeCourseSchedule");
-	    	    frame.setSize(1000, 600);
+	    	    frame.setSize(400, 300);
 	    	    frame.setLocationRelativeTo(null);
 	    	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    	    frame.setVisible(true);
