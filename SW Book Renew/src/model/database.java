@@ -55,6 +55,9 @@ public class database {
     	b_name = new ArrayList<String>();
     	reading_date = new ArrayList<String>();
     	pages = new ArrayList<Integer>();
+    	link = new ArrayList<String>();
+    	cover = new ArrayList<String>();
+    	ISBN = new ArrayList<String>();
     }
     
 //  프로그램 실행시 DB의 연결여부를 살펴봄(드라이브와 DB의 연결여부확인)
