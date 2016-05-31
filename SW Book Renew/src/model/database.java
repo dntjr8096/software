@@ -1,17 +1,17 @@
 package model;
 
-// ÇöÀç DBÀÇ ±¸¼º»óÅÂ
+// í˜„ì¬ DBì˜ êµ¬ì„±ìƒíƒœ
 // Table : book, user, readingList
 
-// °¢ attribute
-// Table book : ISBN, b_name(Ã¥ÀÌ¸§), author
+// ê° attribute
+// Table book : ISBN, b_name(ì±…ì´ë¦„), author
 // Table user : ID, PW
-// Table readingList : ID(À¯Àú), ISBN, reading_date(ÀĞ±â½ÃÀÛÇÑ³¯Â¥), pages
+// Table readingList : ID(ìœ ì €), ISBN, reading_date(ì½ê¸°ì‹œì‘í•œë‚ ì§œ), pages
 
-// UI¿¡ µû¸¥ ¸Ş¼Òµå¸¦ ±¸¼ºÇÏ¿´°í,
-// ÇÊ¿äÇÑ Á¤º¸¸¦ ´õ ÀúÀåÇÏ°Å³ª(ÃâÆÇ»ç, ÆÇ)
-// È¤Àº ÇÊ¿äÇÑ ±â´ÉÀ» Ãß°¡(»èÁ¦, order), È¤Àº ¼öÁ¤
-// ¹Ù·Î Ä«ÅåÀ¸·Î ¾Ë·ÁÁÖ¼¼¿ä. 
+// UIì— ë”°ë¥¸ ë©”ì†Œë“œë¥¼ êµ¬ì„±í•˜ì˜€ê³ ,
+// í•„ìš”í•œ ì •ë³´ë¥¼ ë” ì €ì¥í•˜ê±°ë‚˜(ì¶œíŒì‚¬, íŒ)
+// í˜¹ì€ í•„ìš”í•œ ê¸°ëŠ¥ì„ ì¶”ê°€(ì‚­ì œ, order), í˜¹ì€ ìˆ˜ì •
+// ë°”ë¡œ ì¹´í†¡ìœ¼ë¡œ ì•Œë ¤ì£¼ì„¸ìš”. 
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ public class database {
 	public ArrayList<String> getReadingList() { return reading_date; }
 	public ArrayList<Integer> getPages() { return pages; }
 	
-	//	alphabook(DB)ÀÇ ÁÖ¼Ò¸¦ ÀúÀåÇÏ°í, DB°èÁ¤ÀÇ ¾ÆÀÌµğ¿Í ºñ¹Ğ¹øÈ£ ¼³Á¤
+	//	alphabook(DB)ì˜ ì£¼ì†Œë¥¼ ì €ì¥í•˜ê³ , DBê³„ì •ì˜ ì•„ì´ë””ì™€ ë¹„ë°€ë²ˆí˜¸ ì„¤ì •
     public database() {
     	url = "jdbc:mysql://localhost:3306/alphabook";
     	user = "sysdba";
@@ -51,7 +51,7 @@ public class database {
     	pages = new ArrayList<Integer>();
     }
     
-//  ÇÁ·Î±×·¥ ½ÇÇà½Ã DBÀÇ ¿¬°á¿©ºÎ¸¦ »ìÆìº½(µå¶óÀÌºê¿Í DBÀÇ ¿¬°á¿©ºÎÈ®ÀÎ)
+//  í”„ë¡œê·¸ë¨ ì‹¤í–‰ì‹œ DBì˜ ì—°ê²°ì—¬ë¶€ë¥¼ ì‚´í´ë´„(ë“œë¼ì´ë¸Œì™€ DBì˜ ì—°ê²°ì—¬ë¶€í™•ì¸)
 	public void checkDB() {
 		 try{
 	         Class.forName("org.gjt.mm.mysql.Driver");
@@ -69,7 +69,7 @@ public class database {
 	      }
 	}
 	
-//	UserÅ×ÀÌºíÀÇ »õ·Î¿î °ªÀ» Ãß°¡(À¯ÀúÀÇ ¾ÆÀÌµğ¿Í ÆĞ½º¿öµå)
+//	Userí…Œì´ë¸”ì˜ ìƒˆë¡œìš´ ê°’ì„ ì¶”ê°€(ìœ ì €ì˜ ì•„ì´ë””ì™€ íŒ¨ìŠ¤ì›Œë“œ)
 	public void addUser(String id, String pw) {
 		try {
 			con = DriverManager.getConnection(url,user,pass);
@@ -84,7 +84,7 @@ public class database {
 		}
 	}
 	
-//	bookÅ×ÀÌºíÀÇ °ªµéÀ» Ãß°¡(ISBN, Ã¥ÀÌ¸§, ÀúÀÚ)
+//	bookí…Œì´ë¸”ì˜ ê°’ë“¤ì„ ì¶”ê°€(ISBN, ì±…ì´ë¦„, ì €ì)
 	public void addBook(String ISBN, String b_name, String author) {
 		try {
 			con = DriverManager.getConnection(url,user,pass);
@@ -99,7 +99,7 @@ public class database {
 		}
 	}
 		
-//	µ¶¼­±â·ÏÀÇ °ªµéÀ» Ãß°¡(ÇÁ·Î±×·¥ ·Î±×ÀÎ½Ã ¾ÆÀÌµğ, Ã¥ÀÇ ISBN, Ã¥ÀĞ±â½ÃÀÛÇÑ³¯Â¥, ÆäÀÌÁö) 
+//	ë…ì„œê¸°ë¡ì˜ ê°’ë“¤ì„ ì¶”ê°€(í”„ë¡œê·¸ë¨ ë¡œê·¸ì¸ì‹œ ì•„ì´ë””, ì±…ì˜ ISBN, ì±…ì½ê¸°ì‹œì‘í•œë‚ ì§œ, í˜ì´ì§€) 
 	public void addReadingList(String ID, String ISBN, String reading_date, int pages) {
 		try {
 			con = DriverManager.getConnection(url,user,pass);
@@ -114,12 +114,12 @@ public class database {
 		}
 	}
 	
-//	Ã¥ÀĞ±â ½ÃÀÛÇÑ³¯Â¥ ¼öÁ¤ÇÏ´Â ¸Ş¼Òµå
+//	ì±…ì½ê¸° ì‹œì‘í•œë‚ ì§œ ìˆ˜ì •í•˜ëŠ” ë©”ì†Œë“œ
 	public void updateReadingDate(String value, String ID, String ISBN) {
 		try {
 			con = DriverManager.getConnection(url,user,pass);
 			stat = con.createStatement();
-			sql = "update readingList set reading_date='"+value+"' where ID='"+ID+"' AND ISBN='"+ISBN+"')" ;
+			sql = "update readingList set reading_date='"+value+"' where ID='"+ID+"' AND ISBN='"+ISBN+"'" ;
 			int checkUp = stat.executeUpdate(sql);
 			if(checkUp>0) System.out.println("Success");
 			else System.out.println("Failed");
@@ -129,12 +129,12 @@ public class database {
 		}
 	}
 
-//	ÆäÀÌÁö¸¦ °íÄ¡´Â ¸Ş¼Òµå
+//	í˜ì´ì§€ë¥¼ ê³ ì¹˜ëŠ” ë©”ì†Œë“œ
 	public void updatePages(int pages, String ID, String ISBN) {
 		try {
 			con = DriverManager.getConnection(url,user,pass);
 			stat = con.createStatement();
-			sql = "update readingList set pages='"+pages+"' where ID='"+ID+"' AND ISBN='"+ISBN+"')" ;
+			sql = "update readingList set pages='"+pages+"' where ID='"+ID+"' AND ISBN='"+ISBN+"'" ;
 			int checkUp = stat.executeUpdate(sql);
 			if(checkUp>0) System.out.println("Success");
 			else System.out.println("Failed");
@@ -144,10 +144,40 @@ public class database {
 		}
 	}
 
+	public void deleteBook(String ID, String b_name) {
+		sql = "delete from readingList where ID=? AND b_name=?";
+		try {
+			con = DriverManager.getConnection(url,user,pass);
+			ps = (PreparedStatement)con.prepareStatement(sql);
+			ps.setString(1, ID);
+			ps.setString(2, b_name);
+			int checkUp = ps.executeUpdate();
+			if(checkUp>0) System.out.println("Success");
+			else System.out.println("Failed");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void clearBook(String ID) {
+		sql = "delete from readingList where ID=?";
+		try {
+			con = DriverManager.getConnection(url,user,pass);
+			ps = (PreparedStatement)con.prepareStatement(sql);
+			ps.setString(1, ID);
+			int checkUp = ps.executeUpdate();
+			if(checkUp>0) System.out.println("Success");
+			else System.out.println("Failed");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+
 	
 	
-//	°ªµéÀ» °¢ ¹è¿­¿¡ ÀúÀå
-//	ÀúÀÚ, Ã¥ÀÌ¸§, ÀĞ±â½ÃÀÛÇÑ³¯Â¥, ÆäÀÌÁö¼ö(Á¢¼ÓµÈ idÀÇ °ªÀ» °¡Áö°í ÀúÀåµÈ ±â·ÏµéÀ» ºÒ·¯µå¸²)
+//	ê°’ë“¤ì„ ê° ë°°ì—´ì— ì €ì¥
+//	ì €ì, ì±…ì´ë¦„, ì½ê¸°ì‹œì‘í•œë‚ ì§œ, í˜ì´ì§€ìˆ˜(ì ‘ì†ëœ idì˜ ê°’ì„ ê°€ì§€ê³  ì €ì¥ëœ ê¸°ë¡ë“¤ì„ ë¶ˆëŸ¬ë“œë¦¼)
 	public void getReadingList(String id) {
 		sql = "select ID, author, b_name, reading_date, pages from readingList, book where book.ISBN=readingList.ISBN";
 		
@@ -163,7 +193,7 @@ public class database {
 					b_name.add(rs.getString(3));
 					reading_date.add(rs.getString(4));
 					pages.add(rs.getInt(5));
-//					°¢ º¯¼ö¿¡ ÀÌ¸¦ ÀúÀå(rs.next()·Î ÀÎÇØ ÇÑ ÇàÀ» ´Ù ÀĞÀ¸¸é ÀÚµ¿À¸·Î ´ÙÀ½¿­·Î ÀÌµ¿)
+//					ê° ë³€ìˆ˜ì— ì´ë¥¼ ì €ì¥(rs.next()ë¡œ ì¸í•´ í•œ í–‰ì„ ë‹¤ ì½ìœ¼ë©´ ìë™ìœ¼ë¡œ ë‹¤ìŒì—´ë¡œ ì´ë™)
 				} 
 			}
 		} catch (SQLException e) {
@@ -172,8 +202,8 @@ public class database {
 		}
 	}
 	
-//	Ã³À½ ·Î±×ÀÎ½Ã »ç¿ë
-//	DBÀÇ ÀÖ´Â id¿Í pw°¡ ÀÏÄ¡ÇÑ¿©ºÎ¸¦ È®ÀÎÇÏ¿© true, false·Î ³ªÅ¸³¿
+//	ì²˜ìŒ ë¡œê·¸ì¸ì‹œ ì‚¬ìš©
+//	DBì˜ ìˆëŠ” idì™€ pwê°€ ì¼ì¹˜í•œì—¬ë¶€ë¥¼ í™•ì¸í•˜ì—¬ true, falseë¡œ ë‚˜íƒ€ëƒ„
 //	ex) LoginEventHandler : if (event.equals("OK") && db.checkLogin(ID, PW))
 	public boolean checkLogin(String id, String pw) {
 		boolean check = false;
