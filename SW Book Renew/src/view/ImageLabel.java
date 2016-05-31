@@ -31,5 +31,7 @@ public class ImageLabel extends JLabel{
 		}
 	}
 	
-	
+	public ImageIcon getIcon(){
+		return icon;
+	}
 }

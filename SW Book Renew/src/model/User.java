@@ -13,16 +13,19 @@ public class User implements Observerable{
 		id = null;
 		pw = null;
 		books = null;
+		observers = new ArrayList<Observer>();
 	}
 	
 	public User(String id, String pw, ArrayList<Book> books){	//id,pw,books 를 받는 생성자
 		this.id = id;
 		this.pw = pw;
 		this.books = books;
+		observers = new ArrayList<Observer>();
 	}
 	
 	public void addBook(Book b){		//책 추가
 		books.add(b);
+		notifyObservers();
 	}
 	
 	//옵저버 추가
