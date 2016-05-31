@@ -34,11 +34,17 @@ public class database {
 	private ArrayList<String> b_name;
 	private ArrayList<String> reading_date;
 	private ArrayList<Integer> pages;
-
+	private ArrayList<String> link;
+	private ArrayList<String> cover;
+	private ArrayList<String> ISBN;
+	
 	public ArrayList<String> getAuthor() { return author; }
 	public ArrayList<String> getB_name() { return b_name; }
 	public ArrayList<String> getReadingList() { return reading_date; }
 	public ArrayList<Integer> getPages() { return pages; }
+	public ArrayList<String> getLink()	{ return link; }
+	public ArrayList<String> getCover() { return cover; }
+	public ArrayList<String> getISBN() { return ISBN; }
 	
 	//	alphabook(DB)의 주소를 저장하고, DB계정의 아이디와 비밀번호 설정
     public database() {
@@ -85,11 +91,11 @@ public class database {
 	}
 	
 //	book테이블의 값들을 추가(ISBN, 책이름, 저자)
-	public void addBook(String ISBN, String b_name, String author) {
+	public void addBook(String ISBN, String b_name, String author, String link, String cover ) {
 		try {
 			con = DriverManager.getConnection(url,user,pass);
 			stat = con.createStatement();
-			sql = "insert into book values('"+ISBN+"','"+b_name+"','"+author+"')";
+			sql = "insert into book values('"+ISBN+"','"+b_name+"','"+author+"','"+link+"','"+cover+"')";
 			int checkUp = stat.executeUpdate(sql);
 			if(checkUp>0) System.out.println("Success");
 			else System.out.println("Failed");
@@ -196,14 +202,13 @@ public class database {
 	
 //	값들을 각 배열에 저장
 //	저자, 책이름, 읽기시작한날짜, 페이지수(접속된 id의 값을 가지고 저장된 기록들을 불러드림)
-	public void getReadingList(String id) {
+	/*public void getReadingList(String id) {
 		sql = "select ID, author, b_name, reading_date, pages from readingList, book where book.ISBN=readingList.ISBN";
 		
 		try {
 			con = DriverManager.getConnection(url,user,pass);
 			ps = (PreparedStatement) con.prepareStatement(sql);
 			rs = ps.executeQuery();
-			int i=0;
 			while(rs.next()) {
 				String sID = rs.getString(1);
 				if(id.equals(sID)) {
@@ -218,7 +223,7 @@ public class database {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
 //	처음 로그인시 사용
 //	DB의 있는 id와 pw가 일치한여부를 확인하여 true, false로 나타냄
@@ -241,6 +246,32 @@ public class database {
 			e.printStackTrace();
 		}
 		return check;
+	}
+	
+	public void getAllData(String id) {
+		sql = "select ID,b_name,link,author,cover,book.ISBN,pages,reading_date from readingList,book";
+		
+		try {
+			con = DriverManager.getConnection(url,user,pass);
+			ps = (PreparedStatement) con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				String sID = rs.getString(1);
+				if(id.equals(sID)) {
+					b_name.add(rs.getString(2));
+					link.add(rs.getString(3));
+					author.add(rs.getString(4));
+					cover.add(rs.getString(5));
+					ISBN.add(rs.getString(6));
+					pages.add(rs.getInt(7));
+					reading_date.add(rs.getString(8));
+//					각 변수에 이를 저장(rs.next()로 인해 한 행을 다 읽으면 자동으로 다음열로 이동)
+				} 
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void test() {
