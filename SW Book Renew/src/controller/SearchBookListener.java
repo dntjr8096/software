@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 
 import model.Book;
 import model.XMLReader;
+import view.AddBookFrame;
 
 public class SearchBookListener implements MouseListener{
 
@@ -24,7 +25,6 @@ public class SearchBookListener implements MouseListener{
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		reader.getParseResult(field.getText(), "Title");
-
 	}
 
 	@Override

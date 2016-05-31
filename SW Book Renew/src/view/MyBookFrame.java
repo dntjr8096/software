@@ -89,4 +89,8 @@ public class MyBookFrame extends JFrame implements Observer{
 	public void setDeleteButtonListener(MouseListener l){
 		delete.addMouseListener(l);
 	}
+	
+	public JList getList(){
+		return list;
+	}
 }

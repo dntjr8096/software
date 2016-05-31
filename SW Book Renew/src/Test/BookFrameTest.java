@@ -20,7 +20,7 @@ public class BookFrameTest {
 		MyBookFrame jf = new MyBookFrame(u);
 		jf.updateBooks(books);
 		jf.setVisible(true);
-		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		jf.pack();
 			
 	}

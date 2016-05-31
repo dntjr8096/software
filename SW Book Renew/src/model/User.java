@@ -12,7 +12,7 @@ public class User implements Observerable{
 	public User(){		//default »ý¼ºÀÚ
 		id = null;
 		pw = null;
-		books = null;
+		books = new ArrayList<Book>();
 		observers = new ArrayList<Observer>();
 	}
 	
