@@ -17,16 +17,13 @@ public class KeyboardListener implements KeyListener {
 	private JTextField PWField;
 	private LoginFrame login;
 	private database db;
-	private User user;
+	private User user = new User();
 
 	public KeyboardListener(JTextField IDField, JTextField PWField, LoginFrame login, database db) {
 		this.IDField = IDField;
 		this.PWField = PWField;
 		this.login = login;
 		this.db = db;
-		this.user.inputID(IDField.getText());
-		this.user.inputPW(PWField.getText());
-		this.user.inputBooks(db.getReadingList(IDField.getText()););
 	}
 
 	@Override
@@ -35,6 +32,11 @@ public class KeyboardListener implements KeyListener {
 		// TODO Auto-generated method stub
 		if (e.getKeyCode() == 10) {
 			if (db.checkLogin(IDField.getText(), PWField.getText())) {
+				
+				this.user.inputID(IDField.getText());
+				this.user.inputPW(PWField.getText());
+				//this.user.inputBooks(db.getReadingList(IDField.getText()));
+				
 				login.setMode(1);
 				login.setVisible(false);
 				login.turnOff();
@@ -42,12 +44,14 @@ public class KeyboardListener implements KeyListener {
 				JOptionPane.showMessageDialog(null, "æ»≥Á«œººø‰ Master");
 				
 
-				makeFirstFrame frame = new makeFirstFrame(db);
+				makeFirstFrame frame = new makeFirstFrame(db,user);
 		    	    frame.setTitle("MakeCourseSchedule");
 		    	    frame.setSize(600, 500);
 		    	    frame.setLocationRelativeTo(null);
 		    	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    	    frame.setVisible(true);
+		    	    
+		    	    frame.getbookManageBtn().addMouseListener(new bookManageBtnEventHandler(user));
 		    	    
 			} else {
 				login.setMode(2);

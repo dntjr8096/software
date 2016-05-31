@@ -56,6 +56,8 @@ public class MyBookFrame extends JFrame implements Observer{
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); //가로바정책
         
         getContentPane().add(scroll, BorderLayout.CENTER);
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
 	}
 	
