@@ -20,6 +20,7 @@ public class BookRenderer extends DefaultListCellRenderer{
 	            Book b = (Book)value;
 	            renderer.setText("제목: " + b.Title + "    저자: " + b.Author);
 	            ImageIcon temp;
+	            renderer.setName(b.Title);
 				try {
 					temp = new ImageIcon(new URL(b.Cover));
 					Image tempi = temp.getImage();		//ImageIcon을 Image로 변환
@@ -30,7 +31,7 @@ public class BookRenderer extends DefaultListCellRenderer{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}	//temp를 resize할것임
-	            }
+	        }
 	        return renderer;
 	 }
 }

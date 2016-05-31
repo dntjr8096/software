@@ -2,6 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -31,7 +32,7 @@ public class MyBookFrame extends JFrame implements Observer{
 		observerable = obs;
 		observerable.addObserver(this);
 		
-		add = new JButton("책 추가");
+		add = new JButton("책 리스트 추가");
 		delete = new JButton("책 삭제");
 		//bookPanels = new ArrayList<BookPanel>();
 		scroll = new JScrollPane();
@@ -80,5 +81,12 @@ public class MyBookFrame extends JFrame implements Observer{
 		updateBooks(books);
 	}
 
+	//각 버튼에 리스너 추가
+	public void setAddButtonListener(MouseListener l){
+		add.addMouseListener(l);
+	}
 	
+	public void setDeleteButtonListener(MouseListener l){
+		delete.addMouseListener(l);
+	}
 }

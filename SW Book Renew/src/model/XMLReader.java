@@ -33,4 +33,8 @@ public class XMLReader {
 		
 		return (ArrayList)xsph.Books;
 	}
+	
+	public XmlSaxParserHandler getParser(){
+		return xsph;
+	}
 }

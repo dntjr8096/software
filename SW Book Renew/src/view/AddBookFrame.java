@@ -2,7 +2,9 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -30,11 +32,17 @@ public class AddBookFrame extends JFrame implements Observer{
 		observerable = obs;
 		observerable.addObserver(this);
 		
+		setLayout(new BorderLayout());
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setLayout(new FlowLayout());
+		buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		add = new JButton("추가");
 		search = new JButton("검색");
-		field = new JTextField();
+		field = new JTextField(30);
+		buttonPanel.add(add);
+		buttonPanel.add(field);
+		buttonPanel.add(search);
+		add(buttonPanel, BorderLayout.NORTH);
+		
 		list = new JList();
 		scroll = new JScrollPane();
 		
@@ -53,7 +61,28 @@ public class AddBookFrame extends JFrame implements Observer{
 	@Override
 	public void update(ArrayList<Book> books) {
 		// TODO Auto-generated method stub
-		
+		list.removeAll();
+		//vector에 books안에있는 책들 추가 후 list에 set	
+		Vector vec = new Vector();
+		for(Book b : books){
+			vec.add(b);
+		}
+		list.setListData(vec);
 	}
 
+	public JTextField getField(){
+		return field;
+	}
+	
+	public JList getList(){
+		return list;
+	}
+	
+	public void setSearchListener(MouseListener l){
+		search.addMouseListener(l);
+	}
+	
+	public void setAddBookListener(MouseListener l){
+		add.addMouseListener(l);
+	}
 }

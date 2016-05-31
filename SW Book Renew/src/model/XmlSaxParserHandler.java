@@ -10,7 +10,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 import org.xml.sax.helpers.ParserAdapter;
 
-class XmlSaxParserHandler extends DefaultHandler implements Observerable{
+public class XmlSaxParserHandler extends DefaultHandler implements Observerable{
 	public List<Book> Books;
 	private Book currentBook;
 	private boolean inItemElement = false;
@@ -64,12 +64,17 @@ class XmlSaxParserHandler extends DefaultHandler implements Observerable{
 	}
 
 	public void parseXml(String xmlUrl) throws Exception {		//xml parsing
-            SAXParserFactory spf = SAXParserFactory.newInstance();
+            Books.clear();
+			SAXParserFactory spf = SAXParserFactory.newInstance();
             SAXParser sp = spf.newSAXParser();
             ParserAdapter pa = new ParserAdapter(sp.getParser());
             pa.setContentHandler(this);
 			pa.parse(xmlUrl);
 			notifyObservers();
+	}
+	
+	public ArrayList<Book> getBooks(){
+		return (ArrayList)Books;
 	}
 
 	//옵저버 추가
