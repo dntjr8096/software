@@ -34,7 +34,7 @@ public class LoginEventHandler implements ActionListener {
 
 			this.user.inputID(IDField.getText());
 			this.user.inputPW(PWField.getText());
-			//this.user.inputBooks(db.getReadingList(IDField.getText()));
+			//this.user.inputBooks(db.getAllData(IDField.getText()));
 			
 			login.setMode(1);
 			login.setVisible(false);	

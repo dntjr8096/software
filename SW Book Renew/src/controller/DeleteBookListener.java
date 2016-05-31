@@ -3,28 +3,25 @@ package controller;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JList;
+
 import model.User;
-import model.XMLReader;
-import view.AddBookFrame;
 
-public class AddListListener implements MouseListener{
+public class DeleteBookListener implements MouseListener {
 
-	private AddBookFrame abf;
-	private XMLReader reader; 
 	private User user;
+	private JList list;
 	
-	public AddListListener(XMLReader reader, User user){
-		this.reader = reader;
+	public DeleteBookListener(User user, JList list) {
 		this.user = user;
+		this.list = list;
+		// TODO Auto-generated constructor stub
 	}
 	@Override
-	
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		this.abf = new AddBookFrame(reader.getParser());
-		abf.setAddBookListener(new AddBookListener(user, abf.getList(), reader));
-		abf.setSearchListener(new SearchBookListener(abf.getField(), reader));
-
+		user.deleteBook(list.getSelectedIndex());
+		
 	}
 
 	@Override
@@ -51,4 +48,5 @@ public class AddListListener implements MouseListener{
 		
 	}
 
+	
 }
