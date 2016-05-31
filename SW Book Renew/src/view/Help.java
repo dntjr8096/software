@@ -26,10 +26,10 @@ public class Help extends JFrame{
 		JTextArea text3 = new JTextArea("기타 문의사항이나 버그 발견시 메일을 보내주세요.");
 		mainPanel.add(text3);
 
-		JTextArea text4 = new JTextArea("caucse@cau.ac.kr");
+		JTextArea text4 = new JTextArea("wwwghost6@naver.com");
 		mainPanel.add(text4);
 		
-		JTextArea text5 = new JTextArea("Alphabook ver 1.2");
+		JTextArea text5 = new JTextArea("Alphabook ver 3.2");
 		mainPanel.add(text5);
 		
 		this.add(mainPanel);

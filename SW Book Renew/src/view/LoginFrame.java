@@ -60,7 +60,7 @@ public class LoginFrame extends JFrame {
       Insertpanel.add(OKBtn);
       Insertpanel.add(registerBtn);
       this.add(Insertpanel);
-      this.add(new JTextField("ID와 PW칸에 입력후 회원가입 버튼을 누르면 회원등록이 됩니다."));
+      this.add(new JTextArea("ID와 PW칸에 입력후 회원가입 버튼을 누르면 회원등록이 됩니다.\n" + "\n" + "정상적으로 회원가입이 되면 완료 됐다는 창이 뜹니다.\n\n" + "OK 버튼을 누르시면 로그인이 됩니다."));
    }
    public void turnOn() {   
       this.setVisible(true);

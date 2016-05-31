@@ -23,15 +23,13 @@ public class registerEventHandler implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
-		db.addUser(IDField.getText(), PWField.getText());
 		if(db.checkID(IDField.getText())){
-			JOptionPane.showMessageDialog(null, "중복된 ID가 있습니다.");
+			JOptionPane.showMessageDialog(null, "중복된 아이디가 있습니다.");	
 		}
 		else{
+			db.addUser(IDField.getText(), PWField.getText());
 			JOptionPane.showMessageDialog(null, "등록완료");
 		}
-		
-		
 	}
 
 }
