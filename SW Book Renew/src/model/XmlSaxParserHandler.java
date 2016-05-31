@@ -70,7 +70,6 @@ public class XmlSaxParserHandler extends DefaultHandler implements Observerable{
             ParserAdapter pa = new ParserAdapter(sp.getParser());
             pa.setContentHandler(this);
 			pa.parse(xmlUrl);
-			notifyObservers();
 	}
 	
 	public ArrayList<Book> getBooks(){

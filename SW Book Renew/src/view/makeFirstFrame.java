@@ -72,8 +72,8 @@ public class makeFirstFrame extends JFrame {
 		bp.setLayout(new GridLayout(2,1));
 		
 		XMLReader xmlr = XMLReader.newInstance();
-		ArrayList<Book> books = xmlr.getParseResult("소프트웨어공학", "Title");
-		bp.setContent(books.get(1));
+		ArrayList<Book> books = xmlr.getBestSeller();
+		bp.setContent(books.get(0));	// 베스트셀러 보여줌
 
 		recoBookPanel.add(bp);
 		

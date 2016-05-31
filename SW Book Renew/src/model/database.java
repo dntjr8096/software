@@ -251,8 +251,9 @@ public class database {
 		return check;
 	}
 	
+	//에러남
 	public ArrayList<Book> getAllData(String id) {
-		sql = "select ID,b_name,link,author,cover,book.ISBN,pages,reading_date from readingList,book";
+		sql = "select ID,b_name,link,author,cover,book.ISBN,pages,reading_date from readingList,book where book.ISBN=readingList.ISBN";
 		ArrayList<Book> books = new ArrayList<Book>();
 		try {
 			con = DriverManager.getConnection(url,user,pass);
