@@ -1,3 +1,4 @@
+package controller;
 import java.awt.event.*;
 
 import javax.jws.soap.SOAPBinding.Use;
@@ -7,6 +8,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import model.User;
+import view.LoginFrame;
 import view.makeFirstFrame;
 import model.database;
 

@@ -1,3 +1,4 @@
+package controller;
 import java.awt.event.KeyEvent;
 
 import java.awt.event.KeyListener;
@@ -6,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import view.LoginFrame;
 import view.makeFirstFrame;
 import model.database;
 
@@ -15,7 +17,7 @@ public class KeyboardListener implements KeyListener {
 	private LoginFrame login;
 	private database db;
 
-	KeyboardListener(JTextField IDField, JTextField PWField, LoginFrame login, database db) {
+	public KeyboardListener(JTextField IDField, JTextField PWField, LoginFrame login, database db) {
 		this.IDField = IDField;
 		this.PWField = PWField;
 		this.login = login;

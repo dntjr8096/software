@@ -1,3 +1,4 @@
+package view;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
@@ -13,6 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import controller.KeyboardListener;
+import controller.LoginEventHandler;
+import controller.registerEventHandler;
 import model.database;
 
 public class LoginFrame extends JFrame {
