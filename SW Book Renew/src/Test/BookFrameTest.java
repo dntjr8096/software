@@ -22,16 +22,7 @@ public class BookFrameTest {
 		jf.setVisible(true);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.pack();
-		
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		books = xmlr.getParseResult("ªÁπ∞≥Ó¿Ã", "Title");
-		u.addBook(books.get(0));
-		
+			
 	}
 
 }

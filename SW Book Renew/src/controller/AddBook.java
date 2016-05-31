@@ -1,23 +1,24 @@
 package controller;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import model.Book;
 import model.User;
 
-public class AddBook implements CommandProcess{
+public class AddBook implements ActionListener{
 
 	private User user;
-	private Book b;
 	
-	public AddBook(User user, Book b){
+	public AddBook(User user){
 		this.user = user;
-		this.b = b;
 	}
-	
 	@Override
-	public void doAction() {
-		
-		user.addBook(b);
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
-	}	//CommandProcess 인터페이스 상속
+		user.addBook(b);
+	}
+	
+	
 	
 }

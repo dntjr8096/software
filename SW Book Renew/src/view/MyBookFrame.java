@@ -65,7 +65,9 @@ public class MyBookFrame extends JFrame implements Observer{
 //			bp.setContent(b);
 //			bookPanels.add(bp);
 //		}
+		
 		list.removeAll();
+		//vector에 books안에있는 책들 추가 후 list에 set	
 		Vector vec = new Vector();
 		for(Book b : books){
 			vec.add(b);

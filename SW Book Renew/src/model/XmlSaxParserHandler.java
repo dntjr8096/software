@@ -10,14 +10,16 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 import org.xml.sax.helpers.ParserAdapter;
 
-class XmlSaxParserHandler extends DefaultHandler {
+class XmlSaxParserHandler extends DefaultHandler implements Observerable{
 	public List<Book> Books;
 	private Book currentBook;
 	private boolean inItemElement = false;
 	private String tempValue;
-
+	private ArrayList<Observer> observers;
+	
 	public XmlSaxParserHandler( ){			//생성자
 		Books = new ArrayList<Book>();
+		observers = new ArrayList<Observer>();
 	}
 
 	public void startElement(String namespace, String localName, String qName, Attributes atts) {	//시작 element만날시 실행
@@ -67,5 +69,27 @@ class XmlSaxParserHandler extends DefaultHandler {
             ParserAdapter pa = new ParserAdapter(sp.getParser());
             pa.setContentHandler(this);
 			pa.parse(xmlUrl);
+			notifyObservers();
 	}
+
+	//옵저버 추가
+	public void addObserver(Observer o){
+		observers.add(o);
+	}
+	
+    // 옵저버 제거
+    public void deleteObserver(Observer o){            
+        int i = observers.indexOf(o);                
+        if(i>=0){
+            observers.remove(i);
+        }
+    }
+    
+    // 옵저버에 데이터 전달
+    public void notifyObservers(){                            
+        for(int i=0; i<observers.size(); i++){
+            Observer observer = (Observer)observers.get(i);
+            observer.update((ArrayList)Books);   // update로 옵저버에게 전달한다.
+        }
+    }
 }

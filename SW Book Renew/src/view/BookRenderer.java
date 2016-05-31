@@ -12,6 +12,7 @@ import javax.swing.JList;
 
 import model.Book;
 
+//JList에 한 칸을 Cell이라 하는데 그 Cell의 양식을 정하는 class List.setCellRender에서 사용
 public class BookRenderer extends DefaultListCellRenderer{
 	 public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean hasFocus) {
 	        JLabel renderer = (JLabel)(super.getListCellRendererComponent(list, value, index, isSelected, hasFocus));
