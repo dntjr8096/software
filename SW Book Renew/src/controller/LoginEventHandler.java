@@ -28,7 +28,7 @@ public class LoginEventHandler implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String ID = IDField.getText(); // ID 받아오기
 		String PW = PWField.getText(); // PW 받아오기
-		String event = e.getActionCommand();		
+		String event = e.getActionCommand();
 		
 		if (event.equals("OK") && db.checkLogin(ID, PW)) {
 

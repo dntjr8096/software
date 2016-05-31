@@ -251,15 +251,13 @@ public class database {
 		return check;
 	}
 	
-public ArrayList<Book> getAllData(String id) {
+	public ArrayList<Book> getAllData(String id) {
 		sql = "select ID,b_name,link,author,cover,book.ISBN,pages,reading_date from readingList,book";
 		ArrayList<Book> books = new ArrayList<Book>();
 		try {
 			con = DriverManager.getConnection(url,user,pass);
 			ps = (PreparedStatement) con.prepareStatement(sql);
 			rs = ps.executeQuery();
-			
-			
 			while(rs.next()) {
 				String sID = rs.getString(1);
 				if(id.equals(sID)) {
@@ -287,5 +285,7 @@ public ArrayList<Book> getAllData(String id) {
 		}
 		return books;
 	}
+
+}
 
 
