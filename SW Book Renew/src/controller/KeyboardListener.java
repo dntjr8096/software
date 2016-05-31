@@ -37,7 +37,7 @@ public class KeyboardListener implements KeyListener {
 				JOptionPane.showMessageDialog(null, "æ»≥Á«œººø‰ Master");
 				
 
-				makeFirstFrame frame = new makeFirstFrame();
+				makeFirstFrame frame = new makeFirstFrame(db);
 		    	    frame.setTitle("MakeCourseSchedule");
 		    	    frame.setSize(600, 500);
 		    	    frame.setLocationRelativeTo(null);

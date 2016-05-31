@@ -15,8 +15,10 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import controller.helpEventHandler;
+import controller.settingEventHandler;
 import model.Book;
 import model.XMLReader;
+import model.database;
 
 import java.io.*;
 
@@ -30,8 +32,11 @@ public class makeFirstFrame extends JFrame {
 	private BookPanel bp;
 	private JPanel chartPanel; // 차트패널
 	private JButton setting, help, bookManageBtn;
+	private database db;
 	
-	public makeFirstFrame() {
+	public makeFirstFrame(database db) {
+		
+		this.db = db;
 		
 		setLayout(new BorderLayout());
 		
@@ -42,7 +47,7 @@ public class makeFirstFrame extends JFrame {
 		
 		menuPanel = new JPanel(new GridLayout(1,2)); // menu Panel
 		
-		setting = new JButton("설정");
+		setting = new JButton("초기화설정");
 		help = new JButton("도움말");
 		
 		menuPanel.add(setting);
@@ -78,7 +83,7 @@ public class makeFirstFrame extends JFrame {
 		
 		bottomPanel.add(bookManageBtn);
 		
-		
+		setting.addActionListener(new settingEventHandler(db));
 		help.addActionListener(new helpEventHandler());
  }
 
