@@ -37,9 +37,10 @@ public class LoginEventHandler implements ActionListener {
 
 			JOptionPane.showMessageDialog(null, "æ»≥Á«œººø‰ Master");
 
-			makeFirstFrame frame = new makeFirstFrame();
+			
+			makeFirstFrame frame = new makeFirstFrame(db);
 	    	    frame.setTitle("MakeCourseSchedule");
-	    	    frame.setSize(400, 300);
+	    	    frame.setSize(600, 500);
 	    	    frame.setLocationRelativeTo(null);
 	    	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    	    frame.setVisible(true);
