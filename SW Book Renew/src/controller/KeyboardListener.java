@@ -39,7 +39,7 @@ public class KeyboardListener implements KeyListener {
 
 				makeFirstFrame frame = new makeFirstFrame();
 		    	    frame.setTitle("MakeCourseSchedule");
-		    	    frame.setSize(1000, 600);
+		    	    frame.setSize(600, 500);
 		    	    frame.setLocationRelativeTo(null);
 		    	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    	    frame.setVisible(true);

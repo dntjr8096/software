@@ -14,6 +14,7 @@ import java.util.Vector;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+import controller.helpEventHandler;
 import model.Book;
 import model.XMLReader;
 
@@ -39,13 +40,11 @@ public class makeFirstFrame extends JFrame {
 		
 		topPanel = new JPanel(new BorderLayout()); // top Panel
 		
-		menuPanel = new JPanel(new GridLayout(1,3)); // menu Panel
+		menuPanel = new JPanel(new GridLayout(1,2)); // menu Panel
 		
-		JButton Btn1 = new JButton("버튼1");
 		setting = new JButton("설정");
 		help = new JButton("도움말");
 		
-		menuPanel.add(Btn1);
 		menuPanel.add(setting);
 		menuPanel.add(help);
 		
@@ -56,9 +55,8 @@ public class makeFirstFrame extends JFrame {
 		topPanel.add(helloWord,BorderLayout.CENTER);
 		mainPanel.add(topPanel,BorderLayout.NORTH);
 		
-		bottomPanel = new JPanel(new GridLayout(1,3));
+		bottomPanel = new JPanel(new GridLayout(1,2));
 		mainPanel.add(bottomPanel,BorderLayout.CENTER);
-		chartPanel = new JPanel(); // bottom 차트 패널 ( 임시로 만들어 놓음 )
 		
 		recoBookPanel = new JPanel(new BorderLayout());
 		
@@ -71,7 +69,7 @@ public class makeFirstFrame extends JFrame {
 		XMLReader xmlr = XMLReader.newInstance();
 		ArrayList<Book> books = xmlr.getParseResult("소프트웨어공학", "Title");
 		bp.setContent(books.get(1));
-		
+
 		recoBookPanel.add(bp);
 		
 		bottomPanel.add(recoBookPanel);
@@ -80,9 +78,8 @@ public class makeFirstFrame extends JFrame {
 		
 		bottomPanel.add(bookManageBtn);
 		
-		bottomPanel.add(chartPanel);
 		
-
+		help.addActionListener(new helpEventHandler());
  }
 
 	 JPanel getmainPanel(){
