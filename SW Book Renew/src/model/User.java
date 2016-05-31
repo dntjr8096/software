@@ -28,6 +28,10 @@ public class User implements Observerable{
 		notifyObservers();
 	}
 	
+	public void deleteBook(int index){
+		books.remove(index);
+		notifyObservers();
+	}
 	//옵저버 추가
 	public void addObserver(Observer o){
 		observers.add(o);
