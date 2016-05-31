@@ -251,36 +251,41 @@ public class database {
 		return check;
 	}
 	
-	public void getAllData(String id) {
+public ArrayList<Book> getAllData(String id) {
 		sql = "select ID,b_name,link,author,cover,book.ISBN,pages,reading_date from readingList,book";
-		
+		ArrayList<Book> books = new ArrayList<Book>();
 		try {
 			con = DriverManager.getConnection(url,user,pass);
 			ps = (PreparedStatement) con.prepareStatement(sql);
 			rs = ps.executeQuery();
+			
+			
 			while(rs.next()) {
 				String sID = rs.getString(1);
 				if(id.equals(sID)) {
-					b_name.add(rs.getString(2));
-					link.add(rs.getString(3));
-					author.add(rs.getString(4));
-					cover.add(rs.getString(5));
-					ISBN.add(rs.getString(6));
-					pages.add(rs.getInt(7));
-					reading_date.add(rs.getString(8));
+					Book book = new Book();
+//					b_name.add(rs.getString(2));
+//					link.add(rs.getString(3));
+//					author.add(rs.getString(4));
+//					cover.add(rs.getString(5));
+//					ISBN.add(rs.getString(6));
+//					pages.add(rs.getInt(7));
+//					reading_date.add(rs.getString(8));
 //					각 변수에 이를 저장(rs.next()로 인해 한 행을 다 읽으면 자동으로 다음열로 이동)
+					book.Title = rs.getString(2);
+					book.Link = rs.getString(3);
+					book.Author = rs.getString(4);
+					book.Cover = rs.getString(5);
+					book.ISBN = rs.getString(6);
+					book.setPage(rs.getInt(7));
+					books.add(book);
 				} 
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return books;
 	}
-	
-	public void test() {
-		System.out.println(getAuthor().get(0)+getB_name().get(0)+getPages().get(0));
-	}
-	
-}
 
 
