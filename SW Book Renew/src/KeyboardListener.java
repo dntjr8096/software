@@ -1,4 +1,5 @@
 import java.awt.event.KeyEvent;
+
 import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
@@ -6,16 +7,19 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import view.makeFirstFrame;
+import model.database;
 
 public class KeyboardListener implements KeyListener {
 	private JTextField IDField;
 	private JTextField PWField;
 	private LoginFrame login;
+	private database db;
 
-	KeyboardListener(JTextField IDField, JTextField PWField, LoginFrame login) {
+	KeyboardListener(JTextField IDField, JTextField PWField, LoginFrame login, database db) {
 		this.IDField = IDField;
 		this.PWField = PWField;
 		this.login = login;
+		this.db = db;
 	}
 
 	@Override
@@ -23,8 +27,7 @@ public class KeyboardListener implements KeyListener {
 
 		// TODO Auto-generated method stub
 		if (e.getKeyCode() == 10) {
-			if (IDField.getText().equals("12")
-					&& PWField.getText().equals("1")) {
+			if (db.checkLogin(IDField.getText(), PWField.getText())) {
 				login.setMode(1);
 				login.setVisible(false);
 				login.turnOff();

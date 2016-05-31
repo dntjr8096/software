@@ -43,7 +43,7 @@ public class database {
 	//	alphabook(DB)의 주소를 저장하고, DB계정의 아이디와 비밀번호 설정
     public database() {
     	url = "jdbc:mysql://localhost:3306/alphabook";
-    	user = "sysdba";
+    	user = "root";
     	pass = "sysdba";
     	author = new ArrayList<String>();
     	b_name = new ArrayList<String>();
@@ -173,7 +173,25 @@ public class database {
 		}
 	}
 	
-
+	//check ID
+	public boolean checkID(String id) {
+		boolean check = false;
+		sql = "select ID from user";
+		try {
+			con = DriverManager.getConnection(url,user,pass);
+			ps = (PreparedStatement) con.prepareStatement(sql);
+			rs = ps.executeQuery(sql);
+			while(rs.next()) {
+				String sID = rs.getString(1);
+				if(id.equals(sID)) {
+					check = true;
+				}
+			}
+		}  catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return check;
+	}
 	
 	
 //	값들을 각 배열에 저장
@@ -230,3 +248,4 @@ public class database {
 	}
 	
 }
+
