@@ -24,7 +24,7 @@ public class AddListListener implements MouseListener{
 		this.abf = new AddBookFrame(reader.getParser());
 		abf.setAddBookListener(new AddBookListener(user, abf.getList(), reader));
 		abf.setSearchListener(new SearchBookListener(abf.getField(), reader));
-
+		abf.setNextPreListener(new NextListener(reader, abf.getField()));
 	}
 
 	@Override

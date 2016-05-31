@@ -17,12 +17,8 @@ public class bookManageBtnEventHandler implements MouseListener {
 	
 	public bookManageBtnEventHandler(User user){
 		this.user = user;
-<<<<<<< HEAD
 		reader = XMLReader.newInstance();
 	}
-=======
-		reader = XMLReader.newInstance();	}
->>>>>>> branch 'master' of https://github.com/dntjr8096/software.git
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {

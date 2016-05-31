@@ -2,6 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -38,8 +39,8 @@ public class AddBookFrame extends JFrame implements Observer{
 		previous = new JButton("이전 페이지");
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		buttonPanel.add(next);
 		buttonPanel.add(previous);
+		buttonPanel.add(next);
 		
 		JPanel buttonPanel2 = new JPanel();
 		buttonPanel2.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -96,5 +97,10 @@ public class AddBookFrame extends JFrame implements Observer{
 	
 	public void setAddBookListener(MouseListener l){
 		add.addMouseListener(l);
+	}
+	
+	public void setNextPreListener(ActionListener l){
+		next.addActionListener(l);
+		previous.addActionListener(l);
 	}
 }
