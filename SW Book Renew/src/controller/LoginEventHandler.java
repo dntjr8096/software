@@ -16,6 +16,7 @@ public class LoginEventHandler implements ActionListener {
 	private JTextField IDField, PWField;
 	private LoginFrame login = null;
 	database db;
+	private User user = new User();
 	
 	public LoginEventHandler(JTextField IDField, JTextField PWField, LoginFrame login, database db) {
 		this.IDField = IDField;
@@ -29,8 +30,12 @@ public class LoginEventHandler implements ActionListener {
 		String PW = PWField.getText(); // PW 받아오기
 		String event = e.getActionCommand();		
 		
-		
 		if (event.equals("OK") && db.checkLogin(ID, PW)) {
+
+			this.user.inputID(IDField.getText());
+			this.user.inputPW(PWField.getText());
+			//this.user.inputBooks(db.getReadingList(IDField.getText()));
+			
 			login.setMode(1);
 			login.setVisible(false);	
 			login.turnOff();
@@ -38,12 +43,14 @@ public class LoginEventHandler implements ActionListener {
 			JOptionPane.showMessageDialog(null, "안녕하세요 Master");
 
 			
-			makeFirstFrame frame = new makeFirstFrame(db);
+			makeFirstFrame frame = new makeFirstFrame(db,user);
 	    	    frame.setTitle("MakeCourseSchedule");
 	    	    frame.setSize(600, 500);
 	    	    frame.setLocationRelativeTo(null);
 	    	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    	    frame.setVisible(true);
+	    	    
+	    	    frame.getbookManageBtn().addMouseListener(new bookManageBtnEventHandler(user));
 		}
 		else if (event.equals("OK") && !(db.checkLogin(ID, PW))) {
 			login.setMode(2);

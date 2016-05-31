@@ -22,6 +22,7 @@ import model.Observerable;
 
 public class AddBookFrame extends JFrame implements Observer{
 	private JButton add, search;
+	private JButton next, previous;
 	private JTextField field;
 	private JScrollPane scroll;
 	private JList list;
@@ -33,15 +34,23 @@ public class AddBookFrame extends JFrame implements Observer{
 		observerable.addObserver(this);
 		
 		setLayout(new BorderLayout());
+		next = new JButton("다음 페이지");
+		previous = new JButton("이전 페이지");
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+		buttonPanel.add(next);
+		buttonPanel.add(previous);
+		
+		JPanel buttonPanel2 = new JPanel();
+		buttonPanel2.setLayout(new FlowLayout(FlowLayout.CENTER));
 		add = new JButton("추가");
 		search = new JButton("검색");
 		field = new JTextField(30);
-		buttonPanel.add(add);
-		buttonPanel.add(field);
-		buttonPanel.add(search);
-		add(buttonPanel, BorderLayout.NORTH);
+		buttonPanel2.add(add);
+		buttonPanel2.add(field);
+		buttonPanel2.add(search);
+		add(buttonPanel, BorderLayout.SOUTH);
+		add(buttonPanel2, BorderLayout.NORTH);
 		
 		list = new JList();
 		scroll = new JScrollPane();
@@ -56,6 +65,8 @@ public class AddBookFrame extends JFrame implements Observer{
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); //가로바정책
         
         getContentPane().add(scroll, BorderLayout.CENTER);
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
 	}
 	@Override
@@ -68,6 +79,7 @@ public class AddBookFrame extends JFrame implements Observer{
 			vec.add(b);
 		}
 		list.setListData(vec);
+		pack();
 	}
 
 	public JTextField getField(){

@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 import controller.helpEventHandler;
 import controller.settingEventHandler;
 import model.Book;
+import model.User;
 import model.XMLReader;
 import model.database;
 
@@ -30,11 +31,10 @@ public class makeFirstFrame extends JFrame {
 	private JPanel bottomPanel;	// bottom Panel
 	private JPanel recoBookPanel;	// 추천도서 패널
 	private BookPanel bp;
-	private JPanel chartPanel; // 차트패널
 	private JButton setting, help, bookManageBtn;
 	private database db;
 	
-	public makeFirstFrame(database db) {
+	public makeFirstFrame(database db, User user) {
 		
 		this.db = db;
 		
@@ -87,38 +87,35 @@ public class makeFirstFrame extends JFrame {
 		help.addActionListener(new helpEventHandler());
  }
 
-	 JPanel getmainPanel(){
+	public JPanel getmainPanel(){
 		return mainPanel;
 	}
 	 
-	 JPanel gettopPanel(){
+	public JPanel gettopPanel(){
 			return topPanel;
 		}
 	 
-	 JPanel getmenuPanel(){
+	public JPanel getmenuPanel(){
 			return menuPanel;
 		}
 	 
-	 JPanel getbottomPanel(){
+	 public JPanel getbottomPanel(){
 			return bottomPanel;
 		}
 	 
-	 JPanel getrecoBookPanel(){
+	 public JPanel getrecoBookPanel(){
 			return recoBookPanel;
 		}
-	 JPanel getchartPanel(){
-		 return chartPanel;
-	 }
 	 
-	 JButton getsetting(){
+	 public JButton getsetting(){
 		 return setting;
 	 }
 	 
-	 JButton gethelp(){
+	 public JButton gethelp(){
 		 return help;
 	 }
 	 
-	 JButton getbookManageBtn(){
+	 public JButton getbookManageBtn(){
 		 return bookManageBtn;
 	 }
 	  
