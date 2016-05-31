@@ -57,6 +57,18 @@ public class User implements Observerable{
 		return pw;	
 	}
 	
+	public void inputID(String ID){
+		id = ID;
+	}
+	
+	public void inputPW(String PW){
+		pw = PW;
+	}
+	
+	public void inputBooks(ArrayList<Book> Books){
+		books = Books;
+	}
+	
 	public ArrayList<Book> getBooks(){	//books getter
 		return books;
 	}

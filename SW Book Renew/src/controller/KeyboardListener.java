@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 
 import view.LoginFrame;
 import view.makeFirstFrame;
+import model.User;
 import model.database;
 
 public class KeyboardListener implements KeyListener {
@@ -16,12 +17,16 @@ public class KeyboardListener implements KeyListener {
 	private JTextField PWField;
 	private LoginFrame login;
 	private database db;
+	private User user;
 
 	public KeyboardListener(JTextField IDField, JTextField PWField, LoginFrame login, database db) {
 		this.IDField = IDField;
 		this.PWField = PWField;
 		this.login = login;
 		this.db = db;
+		this.user.inputID(IDField.getText());
+		this.user.inputPW(PWField.getText());
+		this.user.inputBooks(db.getReadingList(IDField.getText()););
 	}
 
 	@Override
