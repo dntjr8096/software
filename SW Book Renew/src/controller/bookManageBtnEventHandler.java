@@ -24,8 +24,8 @@ public class bookManageBtnEventHandler implements MouseListener {
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		mbf = new MyBookFrame(user);
-		mbf.setAddButtonListener(new AddListListener(reader, user));
 		mbf.setDeleteButtonListener(new DeleteBookListener(user, mbf.getList()));
+		mbf.update(user.getBooks());
 	}
 
 	@Override

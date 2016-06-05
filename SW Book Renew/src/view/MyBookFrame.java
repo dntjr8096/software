@@ -24,7 +24,7 @@ import javax.swing.border.Border;
 import model.Book;
 
 public class MyBookFrame extends JFrame implements Observer{
-	private JButton add, delete;
+	private JButton delete;
 	private JScrollPane scroll;
 	private JList list;
 	//private ArrayList<BookPanel> bookPanels;
@@ -36,7 +36,6 @@ public class MyBookFrame extends JFrame implements Observer{
 		observerable = obs;
 		observerable.addObserver(this);
 		
-		add = new JButton("책 리스트 추가");
 		delete = new JButton("책 삭제");
 		//bookPanels = new ArrayList<BookPanel>();
 		scroll = new JScrollPane();
@@ -48,15 +47,13 @@ public class MyBookFrame extends JFrame implements Observer{
 		
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		add.setSize(100, 50);
 		delete.setSize(100, 50);
-		buttonPanel.add(add);
 		buttonPanel.add(delete);
 		add(buttonPanel, BorderLayout.NORTH);
 		
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setCellRenderer(new BookRenderer());
-		list.setModel(model); 
+		list.setModel(model);
 		//스크롤 셋팅
 
         scroll.setViewportView(list);
@@ -97,10 +94,6 @@ public class MyBookFrame extends JFrame implements Observer{
 	}
 
 	//각 버튼에 리스너 추가
-	public void setAddButtonListener(MouseListener l){
-		add.addMouseListener(l);
-	}
-	
 	public void setDeleteButtonListener(MouseListener l){
 		delete.addMouseListener(l);
 	}
