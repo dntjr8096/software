@@ -56,7 +56,8 @@ public class MyBookFrame extends JFrame implements Observer{
 		
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setCellRenderer(new BookRenderer());
-		 //스크롤 셋팅
+		list.setModel(model);
+		//스크롤 셋팅
 
         scroll.setViewportView(list);
         scroll.setBorder(border); //경계 설정
