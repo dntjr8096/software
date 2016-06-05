@@ -12,6 +12,7 @@ import model.Observer;
 import model.Observerable;
 
 import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -29,6 +30,7 @@ public class MyBookFrame extends JFrame implements Observer{
 	//private ArrayList<BookPanel> bookPanels;
 	private Border border = BorderFactory.createTitledBorder("나의책 리스트");
 	private Observerable observerable;
+	private DefaultListModel model = new DefaultListModel();
 	
 	public MyBookFrame(Observerable obs){
 		observerable = obs;
@@ -79,14 +81,13 @@ public class MyBookFrame extends JFrame implements Observer{
 //			bookPanels.add(bp);
 //		}
 		
-		list.removeAll();
-		//vector에 books안에있는 책들 추가 후 list에 set	
-		Vector vec = new Vector();
+		model.clear();
+			
 		for(Book b : books){
-			vec.add(b);
+			BookPanel bp = new BookPanel();
+			bp.setContent(b);
+			model.addElement(bp);
 		}
-		list.setListData(vec);
-		pack();
 	}
 
 	@Override
