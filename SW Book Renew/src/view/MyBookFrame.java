@@ -62,12 +62,17 @@ public class MyBookFrame extends JFrame implements Observer{
         
         getContentPane().add(scroll, BorderLayout.CENTER);
         setVisible(true);
+<<<<<<< HEAD
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         
         Container ct = this.getContentPane();
         
         ct.setPreferredSize(new Dimension(1600,800));
 		ct.setSize(1500,300);
+=======
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        pack();
+>>>>>>> branch 'master' of https://github.com/dntjr8096/software.git
 	}
 	
 	public void updateBooks(ArrayList<Book> books){

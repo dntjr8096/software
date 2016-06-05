@@ -15,9 +15,9 @@ public class bookManageBtnEventHandler implements MouseListener {
 	private MyBookFrame mbf;
 	private XMLReader reader;
 	
-	public bookManageBtnEventHandler(User user){
+	public bookManageBtnEventHandler(User user, XMLReader reader){
 		this.user = user;
-		reader = XMLReader.newInstance();
+		this.reader = reader;
 	}
 
 	@Override

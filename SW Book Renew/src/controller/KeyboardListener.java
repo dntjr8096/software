@@ -8,8 +8,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import view.LoginFrame;
+import view.MyBookFrame;
+import view.make;
 import view.makeFirstFrame;
 import model.User;
+import model.XMLReader;
 import model.database;
 
 public class KeyboardListener implements KeyListener {
@@ -18,12 +21,14 @@ public class KeyboardListener implements KeyListener {
 	private LoginFrame login;
 	private database db;
 	private User user = new User();
+	private XMLReader reader;
 
 	public KeyboardListener(JTextField IDField, JTextField PWField, LoginFrame login, database db) {
 		this.IDField = IDField;
 		this.PWField = PWField;
 		this.login = login;
 		this.db = db;
+		reader = XMLReader.newInstance();
 	}
 
 	@Override
@@ -44,14 +49,17 @@ public class KeyboardListener implements KeyListener {
 				JOptionPane.showMessageDialog(null, "æ»≥Á«œººø‰ Master");
 				
 
-				makeFirstFrame frame = new makeFirstFrame(db,user);
-		    	    frame.setTitle("MakeCourseSchedule");
+					make frame = new make(db,user);
+		    	    frame.setTitle("MakebookSchedule");
 		    	    frame.setSize(600, 500);
 		    	    frame.setLocationRelativeTo(null);
 		    	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    	    frame.setVisible(true);
 		    	    
-		    	    frame.getbookManageBtn().addMouseListener(new bookManageBtnEventHandler(user));
+		    	    frame.getbookManageBtn().addMouseListener(new bookManageBtnEventHandler(user,reader));
+		    	    frame.getHelpBtn().addActionListener(new helpEventHandler());
+		    	    frame.getresetBtn().addActionListener(new settingEventHandler(db));
+		    	    frame.getbookAddBtn().addMouseListener(new AddListListener(reader,user));
 		    	    
 			} else {
 				login.setMode(2);
