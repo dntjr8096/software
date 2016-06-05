@@ -57,7 +57,7 @@ public class MyBookFrame extends JFrame implements Observer{
         
         getContentPane().add(scroll, BorderLayout.CENTER);
         setVisible(true);
-        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         pack();
 	}
 	
