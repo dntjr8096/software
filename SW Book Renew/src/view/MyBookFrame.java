@@ -66,7 +66,7 @@ public class MyBookFrame extends JFrame implements Observer{
         Container ct = this.getContentPane();
         
         ct.setPreferredSize(new Dimension(1600,800));
-		ct.setSize(1500,300);
+		
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 	}

@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
@@ -8,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -29,12 +32,15 @@ public class AddBookFrame extends JFrame implements Observer{
 	private JList list;
 	private Border border = BorderFactory.createTitledBorder("책 검색결과");
 	private Observerable observerable;
+	private DefaultListModel model = new DefaultListModel();
 	
 	public AddBookFrame(Observerable obs){
 		observerable = obs;
 		observerable.addObserver(this);
 		
-		setSize(2000, 1600);
+		Container ct = this.getContentPane();
+	    ct.setPreferredSize(new Dimension(1600,800));
+	    
 		setLayout(new BorderLayout());
 		next = new JButton("다음 페이지");
 		previous = new JButton("이전 페이지");
@@ -60,7 +66,8 @@ public class AddBookFrame extends JFrame implements Observer{
 		
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setCellRenderer(new BookRenderer());
-		 //스크롤 셋팅
+		list.setModel(model); 
+		//스크롤 셋팅
 
         scroll.setViewportView(list);
         scroll.setBorder(border); //경계 설정
@@ -69,19 +76,19 @@ public class AddBookFrame extends JFrame implements Observer{
         getContentPane().add(scroll, BorderLayout.CENTER);
         setVisible(true);
 //        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        pack();
+        
 	}
 	@Override
 	public void update(ArrayList<Book> books) {
 		// TODO Auto-generated method stub
-		list.removeAll();
+		//list.removeAll();
+		model.clear();
 		//vector에 books안에있는 책들 추가 후 list에 set	
-		Vector vec = new Vector();
 		for(Book b : books){
-			vec.add(b);
+			BookPanel bp = new BookPanel();
+			bp.setContent(b);
+			model.addElement(bp);
 		}
-		list.setListData(vec);
-		pack();
 	}
 
 	public JTextField getField(){
