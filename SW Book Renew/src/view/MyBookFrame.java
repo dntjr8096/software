@@ -70,7 +70,7 @@ public class MyBookFrame extends JFrame implements Observer{
         ct.setPreferredSize(new Dimension(1600,800));
 		
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
+        pack();
 	}
 	
 	public void updateBooks(ArrayList<Book> books){

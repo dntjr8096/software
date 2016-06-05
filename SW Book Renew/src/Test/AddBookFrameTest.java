@@ -24,7 +24,7 @@ public class AddBookFrameTest {
 		a.setNextPreListener(nl);
 		a.setVisible(true);
 		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		a.pack();
+	
 	}
 
 }

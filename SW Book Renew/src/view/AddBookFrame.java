@@ -76,7 +76,7 @@ public class AddBookFrame extends JFrame implements Observer{
         getContentPane().add(scroll, BorderLayout.CENTER);
         setVisible(true);
 //        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+        pack();
 	}
 	@Override
 	public void update(ArrayList<Book> books) {
