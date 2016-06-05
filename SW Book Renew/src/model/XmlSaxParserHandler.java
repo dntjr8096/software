@@ -16,6 +16,7 @@ public class XmlSaxParserHandler extends DefaultHandler implements Observerable{
 	private boolean inItemElement = false;
 	private String tempValue;
 	private ArrayList<Observer> observers;
+	private int totalResults = 0;
 	
 	public XmlSaxParserHandler( ){			//»ý¼ºÀÚ
 		Books = new ArrayList<Book>();
@@ -35,6 +36,10 @@ public class XmlSaxParserHandler extends DefaultHandler implements Observerable{
 		} else if (localName.equals("isbn")) {
 			tempValue = "";
 		} else if (localName.equals("cover")) {
+			tempValue = "";
+		}
+		
+		if(localName.equals("totalResults")){
 			tempValue = "";
 		}
 	}
@@ -61,6 +66,10 @@ public class XmlSaxParserHandler extends DefaultHandler implements Observerable{
 				currentBook.Cover = tempValue;
 			}
 		}
+		
+		if(localName.equals("totalResults")){
+			totalResults = Integer.parseInt(tempValue);
+		}
 	}
 
 	public void parseXml(String xmlUrl) throws Exception {		//xml parsing
@@ -70,6 +79,10 @@ public class XmlSaxParserHandler extends DefaultHandler implements Observerable{
             ParserAdapter pa = new ParserAdapter(sp.getParser());
             pa.setContentHandler(this);
 			pa.parse(xmlUrl);
+	}
+	
+	public int getTotalPage(){
+		return (int)Math.ceil(((double)totalResults/10.0));
 	}
 	
 	public ArrayList<Book> getBooks(){

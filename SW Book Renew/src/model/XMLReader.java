@@ -25,7 +25,17 @@ public class XMLReader {
 	
 	public ArrayList<Book> getBestSeller(){
 		try {
-			xsph.parseXml(URL.GetUrl2());
+			xsph.parseXml(URL.GetUrl2("BestSeller"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return (ArrayList<Book>) xsph.Books;
+	}
+	
+	public ArrayList<Book> getNewSpecial(){
+		try {
+			xsph.parseXml(URL.GetUrl2("ItemNewSpecial"));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -61,6 +71,10 @@ public class XMLReader {
 		return xsph;
 	}
 	
+	public void resetPage(){
+		page = 1;
+	}
+	
 	public int getPage(){
 		return page;
 	}
@@ -70,7 +84,7 @@ public class XMLReader {
 	}
 	
 	public void minusPage(){
-		if(page >=1)
+		if(page > 1)
 				page--;
 	}
 	

@@ -16,9 +16,9 @@ public class AddBookFrameTest {
 		User u = new User();
 		XMLReader xmlr = XMLReader.newInstance();
 		AddBookFrame a = new AddBookFrame(xmlr.getParser());
-		SearchBookListener l = new SearchBookListener(a.getField(), xmlr);
+		SearchBookListener l = new SearchBookListener(a.getField(), a.getComboBox(), a.getPageLabel(), xmlr);
 		AddBookListener addl = new AddBookListener(u, a.getList(), xmlr);
-		NextListener nl = new NextListener(xmlr, a.getField());
+		NextListener nl = new NextListener(xmlr, a.getField(), a.getPageLabel(), a.getComboBox());
 		a.setSearchListener(l);
 		a.setAddBookListener(addl);
 		a.setNextPreListener(nl);

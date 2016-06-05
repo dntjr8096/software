@@ -12,7 +12,9 @@ import java.util.Vector;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -27,6 +29,8 @@ import model.Observerable;
 public class AddBookFrame extends JFrame implements Observer{
 	private JButton add, search;
 	private JButton next, previous;
+	private JLabel page;
+	private JComboBox combo;
 	private JTextField field;
 	private JScrollPane scroll;
 	private JList list;
@@ -42,12 +46,25 @@ public class AddBookFrame extends JFrame implements Observer{
 	    ct.setPreferredSize(new Dimension(1600,800));
 	    
 		setLayout(new BorderLayout());
+		String[] queryType = {"제목+저자", "제목", "저자", "출판사"};
+		combo = new JComboBox(queryType);
+		
 		next = new JButton("다음 페이지");
 		previous = new JButton("이전 페이지");
+		page = new JLabel();
+		
+		JPanel southPanel = new JPanel(new BorderLayout());
+		JLabel south_west = new JLabel();
+		south_west.setPreferredSize(new Dimension(150,50));
+		page.setPreferredSize(new Dimension(150,50));
+		southPanel.add(south_west, BorderLayout.WEST);	//칸맞추기 찌꺼기
+		southPanel.add(page, BorderLayout.EAST);
+		
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		buttonPanel.add(previous);
 		buttonPanel.add(next);
+		southPanel.add(buttonPanel, BorderLayout.CENTER);
 		
 		JPanel buttonPanel2 = new JPanel();
 		buttonPanel2.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -55,9 +72,11 @@ public class AddBookFrame extends JFrame implements Observer{
 		search = new JButton("검색");
 		field = new JTextField(30);
 		buttonPanel2.add(add);
+		buttonPanel2.add(combo);
 		buttonPanel2.add(field);
 		buttonPanel2.add(search);
-		add(buttonPanel, BorderLayout.SOUTH);
+		
+		add(southPanel, BorderLayout.SOUTH);
 		add(buttonPanel2, BorderLayout.NORTH);
 		
 		list = new JList();
@@ -95,8 +114,16 @@ public class AddBookFrame extends JFrame implements Observer{
 		return field;
 	}
 	
+	public JLabel getPageLabel(){
+		return page;
+	}
+	
 	public JList getList(){
 		return list;
+	}
+	
+	public JComboBox getComboBox(){
+		return combo;
 	}
 	
 	public void setSearchListener(MouseListener l){
@@ -111,4 +138,5 @@ public class AddBookFrame extends JFrame implements Observer{
 		next.addActionListener(l);
 		previous.addActionListener(l);
 	}
+	
 }
