@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -14,6 +15,7 @@ public class ImageLabel extends JLabel{
 	
 	public ImageLabel(){
 		setSize(150, 180);
+		setBackground(Color.LIGHT_GRAY);
 		//addMouseListener(l);
 	}
 	

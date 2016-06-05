@@ -34,6 +34,7 @@ public class AddBookFrame extends JFrame implements Observer{
 		observerable = obs;
 		observerable.addObserver(this);
 		
+		setSize(2000, 1600);
 		setLayout(new BorderLayout());
 		next = new JButton("다음 페이지");
 		previous = new JButton("이전 페이지");

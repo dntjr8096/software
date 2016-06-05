@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -37,6 +39,9 @@ public class MyBookFrame extends JFrame implements Observer{
 		//bookPanels = new ArrayList<BookPanel>();
 		scroll = new JScrollPane();
 		list = new JList();
+		//scroll.setSize(1600,1000);
+		//list.setPreferredSize(new Dimension(1600,1000));
+		
 		setLayout(new BorderLayout());
 		
 		JPanel buttonPanel = new JPanel();
@@ -58,7 +63,11 @@ public class MyBookFrame extends JFrame implements Observer{
         getContentPane().add(scroll, BorderLayout.CENTER);
         setVisible(true);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        pack();
+        
+        Container ct = this.getContentPane();
+        
+        ct.setPreferredSize(new Dimension(1600,800));
+		ct.setSize(1500,300);
 	}
 	
 	public void updateBooks(ArrayList<Book> books){

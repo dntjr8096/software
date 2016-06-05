@@ -21,7 +21,6 @@ public class BookFrameTest {
 		jf.updateBooks(books);
 		jf.setVisible(true);
 		jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		jf.pack();
 			
 	}
 
