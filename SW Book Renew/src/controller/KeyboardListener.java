@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 import view.LoginFrame;
 import view.MyBookFrame;
 import view.make;
-import view.makeFirstFrame;
+
 import model.User;
 import model.XMLReader;
 import model.database;
@@ -49,7 +49,7 @@ public class KeyboardListener implements KeyListener {
 				JOptionPane.showMessageDialog(null, "æ»≥Á«œººø‰ Master");
 				
 
-					make frame = new make(db,user);
+					make frame = new make(db,user,reader);
 		    	    frame.setTitle("MakebookSchedule");
 		    	    frame.setSize(600, 500);
 		    	    frame.setLocationRelativeTo(null);
@@ -57,7 +57,7 @@ public class KeyboardListener implements KeyListener {
 		    	    frame.setVisible(true);
 		    	    
 		    	    frame.getbookManageBtn().addMouseListener(new bookManageBtnEventHandler(user,reader));
-		    	    frame.getHelpBtn().addActionListener(new helpEventHandler());
+		    	    frame.getHelpBtn().addActionListener(new helpEventHandler(db,user));
 		    	    frame.getresetBtn().addActionListener(new settingEventHandler(db));
 		    	    frame.getbookAddBtn().addMouseListener(new AddListListener(reader,user));
 		    	    

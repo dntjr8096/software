@@ -5,9 +5,19 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import model.User;
+import model.database;
+
 public class Help extends JFrame{
 	
-	public Help(){
+	database db;
+	
+	User user;
+	
+	public Help(database db,User user){
+		
+		this.user = user;
+		this.db = db;
 		
 		 this.setTitle("Help");
 	     this.setSize(400, 400);

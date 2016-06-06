@@ -31,12 +31,14 @@ public class MyBookFrame extends JFrame implements Observer{
 	private Border border = BorderFactory.createTitledBorder("나의책 리스트");
 	private Observerable observerable;
 	private DefaultListModel model = new DefaultListModel();
+	private JButton renewBtn;
 	
 	public MyBookFrame(Observerable obs){
 		observerable = obs;
 		observerable.addObserver(this);
 		
 		delete = new JButton("책 삭제");
+		renewBtn = new JButton("디비 갱신");
 		//bookPanels = new ArrayList<BookPanel>();
 		scroll = new JScrollPane();
 		list = new JList();

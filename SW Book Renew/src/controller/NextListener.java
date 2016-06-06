@@ -49,13 +49,13 @@ public class NextListener implements ActionListener{
 			}
 			
 			if(combo.getSelectedItem().toString() == "力格+历磊")
-				reader.getParseResult(field.getText(), "Keyword");
+				reader.getParseResult(field.getText(), "Keyword", reader.getPage());
 			else if(combo.getSelectedItem().toString() == "力格")
-				reader.getParseResult(field.getText(), "Title");
+				reader.getParseResult(field.getText(), "Title", reader.getPage());
 			else if(combo.getSelectedItem().toString() == "历磊")
-				reader.getParseResult(field.getText(), "Author");
+				reader.getParseResult(field.getText(), "Author", reader.getPage());
 			else if(combo.getSelectedItem().toString() == "免魄荤")
-				reader.getParseResult(field.getText(), "Publisher");
+				reader.getParseResult(field.getText(), "Publisher", reader.getPage());
 		}
 	}
 }

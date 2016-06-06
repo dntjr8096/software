@@ -13,7 +13,6 @@ import view.Help;
 import view.LoginFrame;
 import view.MyBookFrame;
 import view.make;
-import view.makeFirstFrame;
 import model.database;
 
 public class LoginEventHandler implements ActionListener {
@@ -50,7 +49,7 @@ public class LoginEventHandler implements ActionListener {
 			JOptionPane.showMessageDialog(null, "æ»≥Á«œººø‰ Master");
 
 			
-				make frame = new make(db,user);
+				make frame = new make(db,user,reader);
 	    	    frame.setTitle("MakebookSchedule");
 	    	    frame.setSize(600, 500);
 	    	    frame.setLocationRelativeTo(null);
@@ -58,7 +57,7 @@ public class LoginEventHandler implements ActionListener {
 	    	    frame.setVisible(true);
 	    	    
 	    	    frame.getbookManageBtn().addMouseListener(new bookManageBtnEventHandler(user,reader));
-	    	    frame.getHelpBtn().addActionListener(new helpEventHandler());
+	    	    frame.getHelpBtn().addActionListener(new helpEventHandler(db,user));
 	    	    frame.getresetBtn().addActionListener(new settingEventHandler(db));
 	    	    frame.getbookAddBtn().addMouseListener(new AddListListener(reader,user));
 		}

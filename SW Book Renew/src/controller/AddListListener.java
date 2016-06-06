@@ -23,8 +23,8 @@ public class AddListListener implements MouseListener{
 		// TODO Auto-generated method stub
 		this.abf = new AddBookFrame(reader.getParser());
 		abf.setAddBookListener(new AddBookListener(user, abf.getList(), reader));
-		abf.setSearchListener(new SearchBookListener(abf.getField(), reader));
-		abf.setNextPreListener(new NextListener(reader, abf.getField()));
+		abf.setSearchListener(new SearchBookListener(abf.getField(),abf.getComboBox(),abf.getPageLabel() ,reader));
+		abf.setNextPreListener(new NextListener(reader, abf.getField(), abf.getPageLabel(), abf.getComboBox()));
 	}
 
 	@Override

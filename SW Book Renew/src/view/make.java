@@ -2,14 +2,19 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.print.Book;
+import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.border.Border;
 
 import model.User;
+import model.XMLReader;
 import model.database;
 
 public class make extends JFrame {
@@ -22,9 +27,18 @@ public class make extends JFrame {
 	JTextArea idLabel;
 	JButton bookAddBtn;
 	JButton bookManageBtn;
+	XMLReader reader; 
+	database db;
+	User user;
+	Border bestBorder = BorderFactory.createTitledBorder("베스트 셀러");
+	Border specialBorder = BorderFactory.createTitledBorder("주목할만한 신간도서");
 	
-	public make(database db, User user){
-		mainPanel = new JPanel(new BorderLayout());
+	public make(database db, User user, XMLReader reader){
+		this.db = db;
+		this.user = user;
+		this.reader = reader;
+		
+		mainPanel = new JPanel(new BorderLayout(5,5));
 		topPanel = new JPanel(new GridLayout(1,4,5,5));
 		westPanel = new JPanel(new BorderLayout());
 		
@@ -49,7 +63,26 @@ public class make extends JFrame {
 		westPanel.add(btnPanel);
 		
 		btnPanel.add(bookAddBtn);
-		btnPanel.add(bookManageBtn);		
+		btnPanel.add(bookManageBtn);	
+		
+		JPanel centerPanel = new JPanel(new GridLayout(2,1));
+		BookPanel bp = new BookPanel();
+		BookPanel bp2 = new BookPanel();
+		
+		bp.setLayout(new GridLayout(1,2));
+		ArrayList<model.Book> books = reader.getBestSeller();
+		bp.setContent(books.get(0));
+		bp.setBorder(bestBorder);
+		
+		bp2.setLayout(new GridLayout(1,2));
+		ArrayList<model.Book> books2 = reader.getNewSpecial();
+		bp2.setContent(books2.get(0));
+		bp2.setBorder(specialBorder);
+		
+		centerPanel.add(bp);
+		centerPanel.add(bp2);
+		mainPanel.add(centerPanel,BorderLayout.CENTER);
+		
 	}
 	
 	public JButton getHelpBtn(){
