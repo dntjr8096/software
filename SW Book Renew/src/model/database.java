@@ -95,43 +95,45 @@ public class database {
 	
 //	book테이블의 값들을 추가(ISBN, 책이름, 저자)
 	public void addBook(ArrayList<Book> books) {
-	      try {
-	         con = DriverManager.getConnection(url,user,pass);
-	         ps = (PreparedStatement)con.prepareStatement(sql);
-	         sql = "insert into book values(?,?,?,?,?)";
-	         for(int i=0;i<books.size();i++) {
-	            ps.setString(1, books.get(i).ISBN);
-	            ps.setString(2, books.get(i).Title);
-	            ps.setString(3, books.get(i).Author);
-	            ps.setString(4, books.get(i).Link);
-	            ps.setString(5, books.get(i).Cover);
-	            int checkUp = ps.executeUpdate(sql);
+	      
+	      for(int i=0;i<books.size();i++) {
+	         String ISBN = books.get(i).ISBN;
+	         String Title = books.get(i).Title;
+	         String Author = books.get(i).Author;
+	         String Link =  books.get(i).Link;
+	         String Cover =  books.get(i).Cover;
+	         try {
+	            con = DriverManager.getConnection(url,user,pass);
+	            stat = con.createStatement();
+	            sql = "insert into book values('"+ISBN+"','"+Title+"','"+Author+"','"+Link+"','"+Cover+"')";
+	            int checkUp = stat.executeUpdate(sql);
 	            if(checkUp>0) System.out.println("Success");
 	            else System.out.println("Failed");
+	         } catch (SQLException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
 	         }
-	      } catch (SQLException e) {
-	         // TODO Auto-generated catch block
-	         e.printStackTrace();
 	      }
 	   }
 	
 	public void conUserDB(String ID, ArrayList<Book> books) {
-	      try {
-	         con = DriverManager.getConnection(url,user,pass);
-	         ps = (PreparedStatement)con.prepareStatement(sql);
-	         sql = "insert into readingList values(?,?)";
-	         for(int i=0;i<books.size();i++) {
-	            ps.setString(1, ID);
-	            ps.setString(2, books.get(i).ISBN);
-	            int checkUp = ps.executeUpdate(sql);
+
+	      for(int i=0;i<books.size();i++) {
+	         String id = ID;
+	         String ISBN = books.get(i).ISBN;
+	         try {
+	            con = DriverManager.getConnection(url,user,pass);
+	            stat = con.createStatement();
+	            sql = "insert into readingList values('"+id+"','"+ISBN+"')";
+	            int checkUp = stat.executeUpdate(sql);
 	            if(checkUp>0) System.out.println("Success");
 	            else System.out.println("Failed");
+	         } catch (SQLException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
 	         }
-	      } catch (SQLException e) {
-	         // TODO Auto-generated catch block
-	         e.printStackTrace();
 	      }
-	}
+	   }
 		
 //	독서기록의 값들을 추가(프로그램 로그인시 아이디, 책의 ISBN, 책읽기시작한날짜, 페이지) 
 	public void addReadingList(String ID, String ISBN, String reading_date, int pages) {
@@ -276,41 +278,33 @@ public class database {
 		return check;
 	}
 	
-	//에러남
+	
 	public ArrayList<Book> getAllData(String id) {
-		sql = "select ID,b_name,link,author,cover,book.ISBN,pages,reading_date from readingList,book where book.ISBN=readingList.ISBN";
-		ArrayList<Book> books = new ArrayList<Book>();
-		try {
-			con = DriverManager.getConnection(url,user,pass);
-			ps = (PreparedStatement) con.prepareStatement(sql);
-			rs = ps.executeQuery();
-			while(rs.next()) {
-				String sID = rs.getString(1);
-				if(id.equals(sID)) {
-					Book book = new Book();
-//					b_name.add(rs.getString(2));
-//					link.add(rs.getString(3));
-//					author.add(rs.getString(4));
-//					cover.add(rs.getString(5));
-//					ISBN.add(rs.getString(6));
-//					pages.add(rs.getInt(7));
-//					reading_date.add(rs.getString(8));
-//					각 변수에 이를 저장(rs.next()로 인해 한 행을 다 읽으면 자동으로 다음열로 이동)
-					book.Title = rs.getString(2);
-					book.Link = rs.getString(3);
-					book.Author = rs.getString(4);
-					book.Cover = rs.getString(5);
-					book.ISBN = rs.getString(6);
-					book.setPage(rs.getInt(7));
-					books.add(book);
-				} 
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return books;
-	}
+	      sql = "select ID,b_name,link,author,cover,book.ISBN from readingList,book where book.ISBN=readingList.ISBN";
+	      ArrayList<Book> books = new ArrayList<Book>();
+	   
+	      try {
+	         con = DriverManager.getConnection(url,user,pass);
+	         ps = (PreparedStatement) con.prepareStatement(sql);
+	         rs = ps.executeQuery();
+	         while(rs.next()) {
+	            String sID = rs.getString(1);
+	            if(id.equals(sID)) {
+	               Book book = new Book();
+	               book.Title = rs.getString(2);
+	               book.Link = rs.getString(3);
+	               book.Author = rs.getString(4);
+	               book.Cover = rs.getString(5);
+	               book.ISBN = rs.getString(6);
+	               books.add(book);
+	            } 
+	         }
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }   
+	      return books;
+	   }
 
 }
 

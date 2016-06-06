@@ -60,6 +60,10 @@ public class LoginEventHandler implements ActionListener {
 	    	    frame.getHelpBtn().addActionListener(new helpEventHandler(db,user));
 	    	    frame.getresetBtn().addActionListener(new settingEventHandler(db));
 	    	    frame.getbookAddBtn().addMouseListener(new AddListListener(reader,user));
+		
+	    	    
+	    	    user.setBooks(db.getAllData(user.getID()));
+	    	    
 		}
 		else if (event.equals("OK") && !(db.checkLogin(ID, PW))) {
 			login.setMode(2);

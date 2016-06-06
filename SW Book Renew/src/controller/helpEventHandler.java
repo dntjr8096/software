@@ -23,6 +23,7 @@ public class helpEventHandler implements ActionListener{
 		// TODO Auto-generated method stub
 		helpFarme = new Help(db,user);
 		
+		db.addBook(user.getBooks());
 	    db.conUserDB(user.getID(), user.getBooks());
 	}
 

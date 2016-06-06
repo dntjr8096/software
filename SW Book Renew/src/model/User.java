@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import model.Observer;
+import model.Book;
 
 public class User implements Observerable{
 	private String id;		//user id
@@ -75,6 +76,13 @@ public class User implements Observerable{
 	
 	public ArrayList<Book> getBooks(){	//books getter
 		return books;
+	}
+
+	public void setBooks(ArrayList<Book> books) {
+		// TODO Auto-generated method stub
+		for(Book b : books){
+			 this.books.add(b);
+		}
 	}
 
 

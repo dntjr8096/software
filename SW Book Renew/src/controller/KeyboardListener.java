@@ -61,9 +61,8 @@ public class KeyboardListener implements KeyListener {
 		    	    frame.getresetBtn().addActionListener(new settingEventHandler(db));
 		    	    frame.getbookAddBtn().addMouseListener(new AddListListener(reader,user));
 		    
-		    	    db.addBook(user.getBooks());
-		    	    db.conUserDB(user.getID(), user.getBooks());
-		    	    db.getAllData(user.getID());
+		    	    
+		    	    user.setBooks(db.getAllData(user.getID()));
 		    	    
 			} else {
 				login.setMode(2);
