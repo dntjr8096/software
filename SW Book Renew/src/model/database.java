@@ -94,18 +94,43 @@ public class database {
 	}
 	
 //	book테이블의 값들을 추가(ISBN, 책이름, 저자)
-	public void addBook(String ISBN, String b_name, String author, String link, String cover ) {
-		try {
-			con = DriverManager.getConnection(url,user,pass);
-			stat = con.createStatement();
-			sql = "insert into book values('"+ISBN+"','"+b_name+"','"+author+"','"+link+"','"+cover+"')";
-			int checkUp = stat.executeUpdate(sql);
-			if(checkUp>0) System.out.println("Success");
-			else System.out.println("Failed");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void addBook(ArrayList<Book> books) {
+	      try {
+	         con = DriverManager.getConnection(url,user,pass);
+	         ps = (PreparedStatement)con.prepareStatement(sql);
+	         sql = "insert into book values(?,?,?,?,?)";
+	         for(int i=0;i<books.size();i++) {
+	            ps.setString(1, books.get(i).ISBN);
+	            ps.setString(2, books.get(i).Title);
+	            ps.setString(3, books.get(i).Author);
+	            ps.setString(4, books.get(i).Link);
+	            ps.setString(5, books.get(i).Cover);
+	            int checkUp = ps.executeUpdate(sql);
+	            if(checkUp>0) System.out.println("Success");
+	            else System.out.println("Failed");
+	         }
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
+	   }
+	
+	public void conUserDB(String ID, ArrayList<Book> books) {
+	      try {
+	         con = DriverManager.getConnection(url,user,pass);
+	         ps = (PreparedStatement)con.prepareStatement(sql);
+	         sql = "insert into readingList values(?,?)";
+	         for(int i=0;i<books.size();i++) {
+	            ps.setString(1, ID);
+	            ps.setString(2, books.get(i).ISBN);
+	            int checkUp = ps.executeUpdate(sql);
+	            if(checkUp>0) System.out.println("Success");
+	            else System.out.println("Failed");
+	         }
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
 	}
 		
 //	독서기록의 값들을 추가(프로그램 로그인시 아이디, 책의 ISBN, 책읽기시작한날짜, 페이지) 

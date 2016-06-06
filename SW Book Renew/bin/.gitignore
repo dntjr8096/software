@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-/Test/
-/view/
-/model/
-=======
-/model/
-/view/
 /controller/
->>>>>>> branch 'master' of https://github.com/dntjr8096/software.git
+/model/
+/view/
